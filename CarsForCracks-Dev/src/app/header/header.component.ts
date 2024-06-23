@@ -31,6 +31,10 @@ export class HeaderComponent{
 
   ngOnInit(): void {
     this.isAuthenticated = this.usuariosService.isLoggedIn();
+    if(this.isAuthenticated){
+      console.log('Hay una sesion iniciada'+this.isAuthenticated);
+    }
+    
   }
 
   // Apartado de accesibilidad web
@@ -42,7 +46,9 @@ export class HeaderComponent{
   @ViewChild('texto', { static: false }) texto!: ElementRef;  
   aux?:number;
   isSubmenuVisible: boolean = false;
-
+  logout(){
+    this.usuariosService.cerrar();
+  }
   toggleSubmenu() {
     this.isSubmenuVisible = !this.isSubmenuVisible;
   }
