@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, User, createUserWithEmailAndPassword, getAuth, updateProfile } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, getAuth, updateProfile, signOut, User } from '@angular/fire/auth';
 import { Firestore, collection, doc, setDoc, query, where, getDocs, getDoc, addDoc } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { signInWithEmailAndPassword } from '@firebase/auth';
@@ -89,6 +89,15 @@ export class UsuariosService {
         console.log(doc.get("auto"));
       });    
 
+  }
+
+  cerrar(){
+    const auth = getAuth();
+    signOut(auth).then(() => {
+  // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
   }
 
 
