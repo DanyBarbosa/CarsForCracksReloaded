@@ -1,1 +1,23 @@
-<p>registrarse works!</p>
+<form [formGroup]="formRegistro" (submit)="onSubmit()">
+    <label>
+      Nombre:
+      <input type="text" formControlName="nombre">
+    </label>
+    <br>
+    <label>
+      Telefono:
+      <input type="text" formControlName="tel">
+    </label>
+    <br>
+    <label>
+      Correo:
+      <input type="email" formControlName="correo">
+    </label>
+    <br>
+    <label>
+      Contraseña:
+      <input type="password" formControlName="pass">
+    </label>
+    <br>
+    <button type="submit">Enviar</button>
+  </form>
