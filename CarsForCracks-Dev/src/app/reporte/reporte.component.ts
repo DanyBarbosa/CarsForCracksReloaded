@@ -24,7 +24,9 @@ export class ReporteComponent {
 
   constructor(private usuarioServicio:UsuariosService) { }
 
-  
+  ngOnInit(){
+    console.log(this.usuarioServicio.buscar());
+  }
 
   cargarCitas(): void {
     const citasString = localStorage.getItem("rentas");

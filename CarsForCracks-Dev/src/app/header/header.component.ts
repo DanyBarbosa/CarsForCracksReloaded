@@ -15,6 +15,7 @@ export class HeaderComponent{
   
   fontSizeIncrement = 2;
   wordSpacingIncrement = 2;
+  sesion:string|null = null;
 
   constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public usuariosService:UsuariosService){ }
 
@@ -25,12 +26,13 @@ export class HeaderComponent{
     this.searchPerformed.emit();
   }
 
+  
   // Apartado de sesiones
   isAuthenticated: boolean = false;
 
 
   ngOnInit(): void {
-    this.isAuthenticated = this.usuariosService.isLoggedIn();
+    this.sesion = this.usuariosService.getCurrentUser();
   }
 
   // Apartado de accesibilidad web
@@ -62,6 +64,9 @@ export class HeaderComponent{
     }
   }
   
+  cerrarSesion(){
+    this.usuariosService.cerrar();
+  }
   
   toggleInvertColors() {
     this.isInverted = !this.isInverted;
