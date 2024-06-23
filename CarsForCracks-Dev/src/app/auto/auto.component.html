@@ -1,0 +1,17 @@
+<div id="carta">
+    <div class="row animated fadeIn fast">
+        <div class="col md-4 text-center">
+            <img width="300px" src="{{auto.img}}" alt="..." class="img-fluid">
+            <br><br>
+            <a [routerLink]="['/autos']" class="btn btn-outline-danger btn-block">Regresar</a>
+        </div>
+        <div class="col md-8">
+            <h3>{{auto.nombre}}</h3>
+            <hr>
+            <p>{{auto.descrip}}</p>
+            <p>Marca: {{auto.marca}}</p>
+            <p>{{auto.costo|currency:'$'}}</p>
+            <a href="#" class="btn mb-3 btn-outline-primary btn-block">Reservar</a>
+        </div>
+    </div>
+</div>

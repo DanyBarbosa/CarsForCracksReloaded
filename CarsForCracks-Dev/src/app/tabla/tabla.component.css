@@ -1,0 +1,40 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+}
+
+/* Estilos para las filas impares */
+tbody tr:nth-child(odd) {
+    background-color: lightslategray;
+}
+
+/* Estilos para las celdas */
+th, td {
+    padding:11px;
+    border-bottom: 1px solid lightslategray;
+    text-align: center;
+}
+
+
+thead th {
+    background-color: #333;
+    color: white;
+}
+
+
+thead th, tbody th {
+    font-weight: bold;
+}
+
+/* Estilos para el texto en negrita en las celdas del cuerpo */
+tbody td {
+    font-weight: bold;
+}
+
+.cont{
+    text-align: center;
+    padding-bottom: 30px;
+}

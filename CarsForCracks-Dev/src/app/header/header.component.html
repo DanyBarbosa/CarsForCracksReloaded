@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <img id="logonav" src="../../assets/img/Logo Nombre.png" alt="" class="mr-auto">
+    </li>
+  </ul>    
+    <div class="container">
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home"><strong>Inicio</strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/autos"><Strong>Renta</Strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/citas"><strong>Reservas</strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contacto"><strong>Contacto</strong></a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex" role="search">
+        <input class="form-control me-2" type="text" placeholder="Buscar" #buscarTexto (keyup.enter)="buscarAuto(buscarTexto.value)">
+        <button class="btn" type="submit" (click)="buscarAuto(buscarTexto.value)"> <img src="../../assets/img/lupa.png" width="32px"></button>
+      </div>
+    </div>
+  </nav>
+  

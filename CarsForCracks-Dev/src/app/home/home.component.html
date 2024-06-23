@@ -1,0 +1,36 @@
+<div>
+    <link rel="icon" href="assets/img/Designer-fotor-202405038259.jpg" type="image/x-icon">
+    <img src="../assets/img/ford-mustang-gt-rear-4k_1559764510.jpg.webp" width="100%" class="position-relative">
+</div>
+<div class="cont">
+    <div class="position-absolute">
+        <h1><strong>CarsForCracks</strong></h1>
+        <h2>Puro pa' delante</h2>
+    </div>
+</div>
+<br><br>
+<div class="container">
+    <div class="row">
+    <div class="col-md-4" *ngFor ="let tarjeta of tarjetas">
+        <app-card 
+        [titulo]="tarjeta.titulo" 
+        [descripcion]="tarjeta.descripcion" 
+        [imagen]="tarjeta.imagen">
+        </app-card>
+    </div>
+</div>
+</div>
+<br><br>
+<div class="container">
+    <h2 style="text-align:center"><Strong>ALGUNOS DE NUESTROS MODELOS DISPONIBLES</Strong></h2>
+    <app-carousel></app-carousel>
+</div>
+<br><br><br>
+<hr>
+<div class="contenedor">
+    <h1>PRESENTACION DE NUESTROS PROXIMOS MODELOS</h1>
+    <br>
+    <iframe class="video" [src]="video | domseguro: 'https://www.youtube.com/embed/'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br><br><br>
+<app-tabla></app-tabla>

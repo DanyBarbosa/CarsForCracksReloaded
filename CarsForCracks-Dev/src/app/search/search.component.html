@@ -1,0 +1,14 @@
+@if(indice==-1){
+    <div class="row animate__animated animate__backInLeft">
+        <div class="co-md-12">
+            <div class="alert alert-warning" role="alert" >
+                No existen resultados de {{nombreA}}. <p>Puedes encontrar todos nuestros autos en la pagina de Vehiculos.</p>
+            </div>
+        </div>
+    </div>
+}
+@else{
+    <div>
+        <app-auto [auto]="miAuto"></app-auto>
+    </div>
+}

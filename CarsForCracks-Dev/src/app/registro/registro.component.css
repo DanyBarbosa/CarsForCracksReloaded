@@ -1,0 +1,70 @@
+#cartas {
+    background-color: lightgray;
+}
+
+img {
+    width: 40%;
+    padding-bottom: 30px;
+}
+
+.container {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    border: none;
+  
+}
+
+/* Estilos para la tarjeta de automóvil */
+.card {
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.card-text {
+    color: #666;
+}
+
+/* Estilos para el formulario*/ 
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: lightgray;
+}
+
+.form-label {
+    color: #333;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

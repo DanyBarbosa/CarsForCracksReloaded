@@ -1,0 +1,22 @@
+#cartas {
+    margin: 60px auto; /* Margen exterior */
+    max-width: 1200px; /* Ancho máximo */
+    background-color: lightgray;
+}
+.text-center {
+    text-align: center; /* Alineación centrada */
+    color: #333; /* Color del texto */
+}
+.card {
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 8px; /* Borde redondeado */
+    padding: 15px; /* Espaciado interno */
+    background-color: #7eb6f2; /* Color de fondo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+.card-img-top {
+    width: 100%; /* Ancho completo */
+    height: auto; /* Altura automática */
+    border-top-left-radius: 8px; /* Borde redondeado superior izquierdo */
+    border-top-right-radius: 8px; /* Borde redondeado superior derecho */
+}

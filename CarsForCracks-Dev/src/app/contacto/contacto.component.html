@@ -1,0 +1,104 @@
+<div [ngStyle]="principal">
+    <h1>Contactanos y resuelve todas tus preguntas!!</h1>
+    <p>Cuentas con nosotros para resolver cualquier duda que tengas sobre los autos, incluso el tuyo.</p>
+    <p>Simplemente ingresa tus datos en el formulario de abajo, y envianos un mensaje. Estaremos al pendiente de todas tus preguntas. No solo eso, tambien puedes sugerirnos cosas en las que cambiar.
+    </p>
+    <img [ngStyle]="imagen" src="../../assets/img/Logo Nombre.png" alt="">
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div id="formularioF">
+        <div [ngStyle]="formulario">
+            
+            <div class="mb-3">
+                <label for="senderName">Nombre</label>
+                <input id="senderName" formControlName="senderName" required>
+                <div *ngIf="form.get('senderName')?.invalid && form.get('senderName')?.touched">
+                    El nombre es requerido y debe tener al menos 3 caracteres.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label type="email" for="senderEmail">Correo</label>
+                <input id="senderEmail" formControlName="senderEmail" type="email" required>
+                <div *ngIf="form.get('senderEmail')?.invalid && form.get('senderEmail')?.touched">
+                    Ingrese un correo válido.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="subject">Asunto</label>
+                <input id="subject" formControlName="subject" required>
+                <div *ngIf="form.get('subject')?.invalid && form.get('subject')?.touched">
+                    Asunto es requerido.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="comment">Comentario</label>
+                <textarea id="comment" formControlName="comment"></textarea>
+                <div *ngIf="form.get('comment')?.invalid && form.get('comment')?.touched">
+                    El comentario es requerido y debe tener al menos 10 caracteres.
+                </div>
+            </div>
+            <div class="flex align-items-center">
+                <p-checkbox 
+                    [(ngModel)]="Satisfecho"
+                    label="Satisfecho" 
+                    name="Satisfecho" 
+                    value="Satisfecho" />
+            </div>
+            <div class="flex align-items-center">
+                <p-checkbox 
+                    [(ngModel)]="Contento"
+                    label="Contento"
+                    name="Contento" 
+                    value="Contento" />
+            </div>
+            <div class="flex align-items-center">
+                <p-checkbox 
+                    [(ngModel)]="Descontento"
+                    label="Descontento" 
+                    name="Descontento" 
+                    value="Descontento" />
+            </div>
+            <div class="flex align-items-center">
+                <p-checkbox 
+                    [(ngModel)]="Desagradable"
+                    label="Desagradable" 
+                    name="Desagradable" 
+                    value="Desagradable" />
+            </div>
+            <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Enviar</button>
+        </div>
+    </div>
+</form>
+
+
+<div [ngStyle]="titulo">
+    <p>Tu opinion es importante, califica nuestro servecio</p>
+    <p-rating [(ngModel)]="value" [cancel]="false" />
+</div>
+
+<div [ngStyle]="titulo">
+    <h2>Conocenos</h2>
+    <p>Esta pagina es simplemente un proyecto escolar, por ende gran parte de la informacion es inventada. Aqui debajo te mostramos nuestro equipo.</p>
+</div>
+<div [ngStyle]="nosotros">
+    <div [ngStyle]="persona">
+        <img [ngStyle]="imgPerf" src="../../assets/img/Einar.jpeg" alt="">
+        <h5 [ngStyle]="h5">Einar Naim Aguilar Santana</h5>
+    </div>
+    <div [ngStyle]="persona">
+        <img [ngStyle]="imgPerf" src="../../assets/img/Dany.jpeg" alt="">
+        <h5>Daniel Alejandro Barbosa Ayala</h5>
+    </div>
+    <div [ngStyle]="persona">
+        <img [ngStyle]="imgPerf" src="../../assets/img/Axel.jpeg" alt="">
+        <h5>Axel Daniel Macias Heredia</h5>
+    </div>
+    <div [ngStyle]="persona">
+        <img [ngStyle]="imgPerf" src="../../assets/img/Sebas.jpeg" alt="">
+        <h5>Sebastian Rodriguez Hernandez</h5>
+    </div>
+    <div [ngStyle]="persona">
+        <img [ngStyle]="imgPerf" src="../../assets/img/Jesus.jpeg" alt="">
+        <h5>Jesus Ruvalcaba Lozano</h5>
+    </div>
+</div>

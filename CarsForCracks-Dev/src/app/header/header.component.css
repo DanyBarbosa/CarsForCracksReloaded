@@ -1,0 +1,13 @@
+.navbar {
+    text-align: left;
+    height: 160px;
+    background-color: rgb(0, 123, 255);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .navbar a{
+    font-size: 30px;
+  }
+  #logonav{
+    padding-left: 350px;
+    height: 160px;
+  }

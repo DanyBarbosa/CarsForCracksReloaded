@@ -1,0 +1,54 @@
+<div class="card mb-3 container">
+    <img src={{automovil.img}} class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{automovil.nombre}}</h5>
+      <p class="card-text">{{automovil.descrip}}</p>
+      <div>
+          <p class="card-text">{{automovil.marca}}</p>
+          <p class="card-text">${{automovil.costo}}</p>
+          <p class="card-text">{{automovil.anio}}</p>
+      </div>
+    </div>
+  </div>
+
+<div class="container mb-3" style="padding-left: 310px;">
+    <form class="row g-5" #clienteForm="ngForm">
+        <div class="col-md-6">
+          <p-floatLabel>
+            <input type="text" class="form-control" id="name" name="nombre" [(ngModel)]="datosCliente.nombre">
+            <label for="name" class="form-label" >Nombre</label>
+          </p-floatLabel>
+        </div>
+        <div class="col-md-6">
+          <p-floatLabel>
+            <input type="number" class="form-control" id="tel" name="tel" [(ngModel)]="datosCliente.tel">
+            <label for="tel" class="form-label">Telefono</label>
+          </p-floatLabel>
+        </div>
+        <div>
+          <p-floatLabel>
+            <input type="email" class="form-control" id="correo" name="correo"  [(ngModel)]="datosCliente.correo">
+            <label for="correo" class="form-label">Correo Electronico </label>
+          </p-floatLabel>
+        </div>
+        <div class="col-12 row g-3">
+          <div class="col-md-6">
+            <p-floatLabel>
+              <p-calendar name="range" [showTime]="true" hourFormat="12" [(ngModel)]="startDate"  />
+              <label for="startDate" class="form-label">Fecha de Inicio </label>
+            </p-floatLabel>
+          </div>
+          <div class="col-md-6">
+            <p-floatLabel>
+              <p-calendar name="range" [showTime]="true" hourFormat="12" [(ngModel)]="endDate"  />
+              <label for="endDate" class="form-label">Fecha de Entrega </label>
+            </p-floatLabel>
+
+          </div>
+        </div>
+         
+        <div class="col-12"> 
+          <button type="submit" class="btn btn-primary" (click)="submit()">Confirmar</button>
+        </div>
+      </form>
+</div>

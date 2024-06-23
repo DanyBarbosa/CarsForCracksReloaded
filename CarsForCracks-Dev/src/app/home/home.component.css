@@ -1,0 +1,17 @@
+.position-absolute {
+    top: 1000px;
+    left: 850px;
+    color: aliceblue;
+    font-family: 'Times New Roman', Times, serif;
+}
+.video{
+    width: 80%;
+    height: 650px;
+}
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

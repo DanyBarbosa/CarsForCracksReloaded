@@ -1,0 +1,65 @@
+
+#cartas{
+    width: 97%;
+    margin: 40px;
+    background-color: lightslategray;
+    padding: 15px;
+    border-radius: 5px;
+}
+.img{
+    width: 700px;
+}
+.body{
+    background-color: gray;
+
+}
+.cartas{
+    background-color: gray;
+}
+
+/* Estilos para el título */
+h1.text-center {
+    text-align: center;
+    color: black;
+}
+
+/* Estilos para las cartas de automóviles */
+.card {
+    border: 1px solid;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: black;
+}
+
+/* Estilos para el botón Reservar */
+.btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+/*Estilos para el masonry*/
+.masonry-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
