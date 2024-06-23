@@ -1,23 +1,31 @@
-<form [formGroup]="formRegistro" (submit)="onSubmit()">
-    <label>
-      Nombre:
-      <input type="text" formControlName="nombre">
-    </label>
-    <br>
-    <label>
-      Telefono:
-      <input type="text" formControlName="tel">
-    </label>
-    <br>
-    <label>
-      Correo:
-      <input type="email" formControlName="correo">
-    </label>
-    <br>
-    <label>
-      Contraseña:
-      <input type="password" formControlName="pass">
-    </label>
-    <br>
-    <button type="submit">Enviar</button>
-  </form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mt-5">Registrarse</h2>
+      <div class="card mt-3">
+        <div class="card-body">
+          <form [formGroup]="formRegistro" (submit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Nombre:</label>
+              <input type="text" class="form-control" formControlName="nombre">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Telefono:</label>
+              <input type="text" class="form-control" formControlName="tel">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Correo:</label>
+              <input type="email" class="form-control" formControlName="correo">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Contraseña:</label>
+              <input type="password" class="form-control" formControlName="pass">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br>
