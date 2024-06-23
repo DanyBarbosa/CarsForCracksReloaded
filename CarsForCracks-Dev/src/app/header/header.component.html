@@ -22,9 +22,21 @@
           </li>
         </ul>
       </div>
+      <button style="margin-right: 30px;" class="btn btn-secondary ml-auto" (click)="toggleSubmenu()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-800q-33 0-56.5-23.5T400-880q0-33 23.5-56.5T480-960q33 0 56.5 23.5T560-880q0 33-23.5 56.5T480-800ZM360-200v-480q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-800l20 80q-56 15-118 25t-122 15v480h-80v-240h-80v240h-80ZM320 0q-17 0-28.5-11.5T280-40q0-17 11.5-28.5T320-80q17 0 28.5 11.5T360-40q0 17-11.5 28.5T320 0Zm160 0q-17 0-28.5-11.5T440-40q0-17 11.5-28.5T480-80q17 0 28.5 11.5T520-40q0 17-11.5 28.5T480 0Zm160 0q-17 0-28.5-11.5T600-40q0-17 11.5-28.5T640-80q17 0 28.5 11.5T680-40q0 17-11.5 28.5T640 0Z"/></svg></button>
+
       <div class="d-flex" role="search">
         <input class="form-control me-2" type="text" placeholder="Buscar" #buscarTexto (keyup.enter)="buscarAuto(buscarTexto.value)">
         <button class="btn" type="submit" (click)="buscarAuto(buscarTexto.value)"> <img src="../../assets/img/lupa.png" width="32px"></button>
+      </div>
+      
+      <!-- Sidebar -->
+      <div class="sidebar" [ngClass]="{ 'active': isSubmenuVisible }">
+        <ul>
+          <li><button class="btn btn-dark boton" (click)="speak()">Lector de pantalla</button></li>
+          <li><button class="btn btn-secondary boton" (click)="increaseFontSize()">Aumentar tamaño</button></li>
+          <li><button class="btn btn-warning boton" (click)="increaseWordSpacing()">Aumentar espaciado</button></li>
+          <li><button class="btn btn-danger boton" (click)="toggleInvertColors()">Invertir colores</button></li>
+        </ul>
       </div>
     </div>
   </nav>
