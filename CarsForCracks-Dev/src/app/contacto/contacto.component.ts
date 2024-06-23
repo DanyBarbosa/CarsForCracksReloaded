@@ -25,7 +25,11 @@ export class ContactoComponent {
       senderName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       senderEmail: new FormControl('', [Validators.required, Validators.email]),
       subject: new FormControl('', [Validators.required]),
-      comment: new FormControl('', [Validators.required, Validators.minLength(10)])
+      comment: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      satisfecho: new FormControl(false),
+      contento: new FormControl(false),
+      descontento: new FormControl(false),
+      desagradable: new FormControl(false)
     });
   }
 
