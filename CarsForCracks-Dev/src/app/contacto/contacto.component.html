@@ -1,14 +1,14 @@
-<div [ngStyle]="principal">
+<div class="principal">
     <h1>Contactanos y resuelve todas tus preguntas!!</h1>
     <p>Cuentas con nosotros para resolver cualquier duda que tengas sobre los autos, incluso el tuyo.</p>
     <p>Simplemente ingresa tus datos en el formulario de abajo, y envianos un mensaje. Estaremos al pendiente de todas tus preguntas. No solo eso, tambien puedes sugerirnos cosas en las que cambiar.
     </p>
-    <img [ngStyle]="imagen" src="../../assets/img/Logo Nombre.png" alt="">
+    <img class="imagen" src="../../assets/img/Logo Nombre.png" alt="">
 </div>
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div id="formularioF">
-        <div [ngStyle]="formulario">
-            
+        <div class="formulario">
             <div class="mb-3">
                 <label for="senderName">Nombre</label>
                 <input id="senderName" formControlName="senderName" required>
@@ -42,59 +42,59 @@
                   formControlName="satisfecho"
                   label="Satisfecho" 
                   value="Satisfecho"></p-checkbox>
-              </div>
-              <div class="flex align-items-center">
+            </div>
+            <div class="flex align-items-center">
                 <p-checkbox 
                   formControlName="contento"
                   label="Contento"
                   value="Contento"></p-checkbox>
-              </div>
-              <div class="flex align-items-center">
+            </div>
+            <div class="flex align-items-center">
                 <p-checkbox 
                   formControlName="descontento"
                   label="Descontento" 
                   value="Descontento"></p-checkbox>
-              </div>
-              <div class="flex align-items-center">
+            </div>
+            <div class="flex align-items-center">
                 <p-checkbox 
                   formControlName="desagradable"
                   label="Desagradable" 
                   value="Desagradable"></p-checkbox>
-              </div>
+            </div>
             <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Enviar</button>
         </div>
     </div>
 </form>
 
-
-<div [ngStyle]="titulo">
+<div class="titulo">
     <p>Tu opinion es importante, califica nuestro servicio</p>
-    <p-rating [(ngModel)]="value" [cancel]="false" />
+    <p-rating [(ngModel)]="value" [cancel]="false"></p-rating>
 </div>
 
-<div [ngStyle]="titulo">
+<div class="titulo">
     <h2>Conocenos</h2>
     <p>Esta pagina es simplemente un proyecto escolar, por ende gran parte de la informacion es inventada. Aqui debajo te mostramos nuestro equipo.</p>
 </div>
-<div [ngStyle]="nosotros">
-    <div [ngStyle]="persona">
-        <img [ngStyle]="imgPerf" src="../../assets/img/Einar.jpeg" alt="">
-        <h5 [ngStyle]="h5">Einar Naim Aguilar Santana</h5>
+
+<div class="nosotros">
+    <div class="persona">
+        <img class="imgPerf" src="../../assets/img/Einar.jpeg" alt="">
+        <h5 class="h5">Einar Naim Aguilar Santana</h5>
     </div>
-    <div [ngStyle]="persona">
-        <img [ngStyle]="imgPerf" src="../../assets/img/Dany.jpeg" alt="">
+    <div class="persona">
+        <img class="imgPerf" src="../../assets/img/Dany.jpeg" alt="">
         <h5>Daniel Alejandro Barbosa Ayala</h5>
     </div>
-    <div [ngStyle]="persona">
-        <img [ngStyle]="imgPerf" src="../../assets/img/Axel.jpeg" alt="">
+    <div class="persona">
+        <img class="imgPerf" src="../../assets/img/Axel.jpeg" alt="">
         <h5>Axel Daniel Macias Heredia</h5>
     </div>
-    <div [ngStyle]="persona">
-        <img [ngStyle]="imgPerf" src="../../assets/img/Sebas.jpeg" alt="">
-        <h5>Sebastian Rodriguez Hernandez </h5>
+    <div class="persona">
+        <img class="imgPerf" src="../../assets/img/Sebas.jpeg" alt="">
+        <h5>Sebastian Rodriguez Hernandez</h5>
     </div>
-    <div [ngStyle]="persona">
-        <img [ngStyle]="imgPerf" src="../../assets/img/Jesus.jpeg" alt="">
+    <div class="persona">
+        <img class="imgPerf" src="../../assets/img/Jesus.jpeg" alt="">
         <h5>Jesus Ruvalcaba Lozano</h5>
     </div>
 </div>
