@@ -8,6 +8,7 @@ import { AutoService } from '../shared/auto.service';
 import { CitasService } from '../citas.service';
 import { Automovil } from '../automovil';
 import { log } from 'console';
+import { UsuariosService } from '../usuarios.service';
 
 @Component({
   selector: 'app-reporte',
@@ -16,17 +17,14 @@ import { log } from 'console';
   templateUrl: './reporte.component.html',
   styleUrl: './reporte.component.css'
 })
-export class ReporteComponent implements OnInit {
+export class ReporteComponent {
 
   hoy: Date = new Date();
   citas: Renta[] = [];
 
-  constructor() { }
+  constructor(private usuarioServicio:UsuariosService) { }
 
-  ngOnInit(): void {
-    this.cargarCitas();
-    this.orden();
-  }
+  
 
   cargarCitas(): void {
     const citasString = localStorage.getItem("rentas");

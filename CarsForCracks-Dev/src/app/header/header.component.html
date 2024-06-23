@@ -11,9 +11,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/home"><strong>Inicio</strong></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/autos"><Strong>Renta</Strong></a>
-          </li>
+          <!-- Apartado sobre si hay o no sesion iniciada -->
+           <!-- De momento no hay sesiones iniciadas, lo modificare mas tarde -Carlos -->
+           @if (!usuariosService.isLoggedIn()) {
+            <li class="nav-item">
+              <a class="nav-link" href="/autos"><Strong>Renta</Strong></a>
+            </li>
+           }
           <li class="nav-item">
             <a class="nav-link" href="/citas"><strong>Reservas</strong></a>
           </li>
