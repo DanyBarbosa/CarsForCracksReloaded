@@ -1,12 +1,11 @@
 import { Automovil } from "./automovil";
+import { Usuarios } from "./usuarios";
 
 export interface Renta{
     fecha: Date;
     fechaInicio: Date;
     fechaFin: Date;
-    nombre: string;
-    tel: string;
-    correo: string;
+    usuario:Usuarios;
     dias:number;
     auto:Automovil;
 }
