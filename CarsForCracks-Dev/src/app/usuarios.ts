@@ -3,5 +3,4 @@ export interface Usuarios {
     tel: string;
     correo: string;
     pass: string;
-    id:string;
 }
