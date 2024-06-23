@@ -5,6 +5,7 @@ import { CarouselComponent } from '../carousel/carousel.component';
 import { AutomovilComponent } from '../automovil/automovil.component';
 import { TablaComponent } from '../tabla/tabla.component';
 import { DomseguroPipe } from '../domseguro.pipe';
+import { UsuariosService } from '../usuarios.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -30,6 +31,7 @@ export class HomeComponent {
       imagen: "assets/img/objetivo.jpg",
     }
   ];
+
 
   video:string="Oil-uwcxzBk?si=RfEiYHhDbtEQYZnB";
   constructor() { }

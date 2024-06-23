@@ -12,6 +12,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { CitasService } from '../citas.service';
 import { FloatLabelModule } from "primeng/floatlabel";
 import Swal from 'sweetalert2';
+import { UsuariosService } from '../usuarios.service';
+import { Usuarios } from '../usuarios';
 
 
 
@@ -27,13 +29,17 @@ import Swal from 'sweetalert2';
 export class RegistroComponent {
   automovil!:Automovil;
   enviado:boolean = false;
+  usuario: Usuarios | null = null;
   datosCliente:Renta = {
     fecha: new Date(),
     fechaInicio: new Date(),
     fechaFin: new Date(),
-    nombre: '',
-    tel: '',
-    correo: '',
+    usuario: {
+      nombre:'',
+      tel:'',
+      correo:'',
+      pass:''
+    },
     dias:0,
     auto: {
       nombre:'',
@@ -42,10 +48,10 @@ export class RegistroComponent {
       img: '',
       marca: '',
       costo: 0,
-    }
+    },
   }
   
-  constructor(public automovilService: AutoService, public activatedRoute:ActivatedRoute, private citasService:CitasService){
+  constructor(public automovilService: AutoService, public activatedRoute:ActivatedRoute, private citasService:CitasService, private usuarioService:UsuariosService){
     this.activatedRoute.params.subscribe(params => {
       this.automovil = automovilService.getAuto(params['id']);
     })
@@ -57,21 +63,22 @@ export class RegistroComponent {
   endDate: any;
 
 
-  verificar():void{
+  async verificar(){
     if(this.startDate != undefined && this.endDate != undefined){
       let prueba:number|undefined;
+      this.usuario = await this.usuarioService.cuenta();
       prueba = this.calcularDiferenciaDias();
-      if(this.datosCliente.nombre != null && this.datosCliente.correo != null && this.datosCliente.tel != null){
+      if(this.usuario != null){
         this.datosCliente.auto = this.automovil;
         if(prueba !== undefined && this.enviado == true){
           let numero:number = prueba;
+          this.datosCliente.usuario = this.usuario;
           this.datosCliente.dias = numero;
           this.datosCliente.fechaInicio = this.startDate;
           this.datosCliente.fechaFin = this.endDate;
-          this.citasService.agregarRenta(this.datosCliente);
-          this.datosCliente.nombre = '';
-          this.datosCliente.tel = '';
-          this.datosCliente.correo = '';
+          this.usuarioService.registroCita(this.datosCliente);
+          // this.citasService.agregarRenta(this.datosCliente);
+          this.usuarioService.buscar();
           this.startDate = null;
           this.endDate = null;
         }
