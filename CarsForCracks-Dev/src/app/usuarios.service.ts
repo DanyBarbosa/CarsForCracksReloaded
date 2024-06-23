@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, getAuth, updateProfile, signOut } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, getAuth, updateProfile, signOut, User } from '@angular/fire/auth';
 import { Firestore, collection, doc, setDoc, query, where, getDocs, getDoc, addDoc } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { signInWithEmailAndPassword } from '@firebase/auth';
@@ -119,5 +119,17 @@ export class UsuariosService {
     }
     return null;
   }
+
+   // Método para verificar si hay un usuario autenticado
+   isLoggedIn(): boolean {
+    return this.auth.currentUser !== null;
+  }
+
+   // Método para obtener el usuario actual
+   getCurrentUser(): User | null {
+    return this.auth.currentUser;
+  }
+
+ 
 
 }

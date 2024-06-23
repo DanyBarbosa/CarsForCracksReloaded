@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, output, AfterViewInit, Renderer2, Elem
 import { RouterModule, Router } from '@angular/router';
 import { OutputComponent } from '../output/output.component';
 import { CommonModule } from '@angular/common';
+import { UsuariosService } from '../usuarios.service';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +16,21 @@ export class HeaderComponent{
   fontSizeIncrement = 2;
   wordSpacingIncrement = 2;
 
-  constructor(private router:Router, private renderer: Renderer2, private el: ElementRef){ }
+  constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public usuariosService:UsuariosService){ }
 
   @Output() searchPerformed: EventEmitter<string> = new EventEmitter<string>();
 
   buscarAuto(auto:string){
     this.router.navigate(['/buscador',auto]);
     this.searchPerformed.emit();
+  }
+
+  // Apartado de sesiones
+  isAuthenticated: boolean = false;
+
+
+  ngOnInit(): void {
+    this.isAuthenticated = this.usuariosService.isLoggedIn();
   }
 
   // Apartado de accesibilidad web

@@ -39,32 +39,28 @@
             </div>
             <div class="flex align-items-center">
                 <p-checkbox 
-                    [(ngModel)]="Satisfecho"
-                    label="Satisfecho" 
-                    name="Satisfecho" 
-                    value="Satisfecho" />
-            </div>
-            <div class="flex align-items-center">
+                  formControlName="satisfecho"
+                  label="Satisfecho" 
+                  value="Satisfecho"></p-checkbox>
+              </div>
+              <div class="flex align-items-center">
                 <p-checkbox 
-                    [(ngModel)]="Contento"
-                    label="Contento"
-                    name="Contento" 
-                    value="Contento" />
-            </div>
-            <div class="flex align-items-center">
+                  formControlName="contento"
+                  label="Contento"
+                  value="Contento"></p-checkbox>
+              </div>
+              <div class="flex align-items-center">
                 <p-checkbox 
-                    [(ngModel)]="Descontento"
-                    label="Descontento" 
-                    name="Descontento" 
-                    value="Descontento" />
-            </div>
-            <div class="flex align-items-center">
+                  formControlName="descontento"
+                  label="Descontento" 
+                  value="Descontento"></p-checkbox>
+              </div>
+              <div class="flex align-items-center">
                 <p-checkbox 
-                    [(ngModel)]="Desagradable"
-                    label="Desagradable" 
-                    name="Desagradable" 
-                    value="Desagradable" />
-            </div>
+                  formControlName="desagradable"
+                  label="Desagradable" 
+                  value="Desagradable"></p-checkbox>
+              </div>
             <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Enviar</button>
         </div>
     </div>
@@ -95,7 +91,7 @@
     </div>
     <div [ngStyle]="persona">
         <img [ngStyle]="imgPerf" src="../../assets/img/Sebas.jpeg" alt="">
-        <h5>Sebastian Rodriguez Hernandez</h5>
+        <h5>Sebastian Rodriguez Hernandez </h5>
     </div>
     <div [ngStyle]="persona">
         <img [ngStyle]="imgPerf" src="../../assets/img/Jesus.jpeg" alt="">
