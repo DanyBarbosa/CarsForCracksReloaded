@@ -53,4 +53,18 @@
   .sidebar ul li a:hover {
     background-color: #575d63;
   }
+
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+  }
   

@@ -10,9 +10,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements AfterViewInit{
+export class HeaderComponent{
+  
+  fontSizeIncrement = 2;
+  wordSpacingIncrement = 2;
 
- 
   constructor(private router:Router, private renderer: Renderer2, private el: ElementRef){ }
 
   @Output() searchPerformed: EventEmitter<string> = new EventEmitter<string>();
@@ -61,8 +63,28 @@ export class HeaderComponent implements AfterViewInit{
     }
   }
 
-  ngAfterViewInit(): void {
-    
+  increaseFontSize(): void {
+    const bodyElement = document.body;
+
+    // Obtiene el tamaño actual de la fuente
+    const currentFontSize = window.getComputedStyle(bodyElement).fontSize;
+    const newFontSize = parseFloat(currentFontSize) + this.fontSizeIncrement + 'px';
+
+    bodyElement.style.fontSize = newFontSize;
   }
+
+  increaseWordSpacing(): void {
+    const bodyElement = document.body;
+
+    // Obtiene el espaciado actual de las palabras
+    const currentWordSpacing = window.getComputedStyle(bodyElement).wordSpacing;
+    const newWordSpacing = (parseFloat(currentWordSpacing) || 0) + this.wordSpacingIncrement + 'px';
+
+    bodyElement.style.wordSpacing = newWordSpacing;
+  }
+
+  }
+
+
  
-}
+
