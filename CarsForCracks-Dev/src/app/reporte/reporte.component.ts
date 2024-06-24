@@ -18,7 +18,7 @@ import { UsuariosService } from '../usuarios.service';
   styleUrl: './reporte.component.css'
 })
 export class ReporteComponent {
-
+  citasAdmin: Renta []=[];
   clientes: Renta[] = []
   clientesActivos: Renta[] = [];
   clientesInactivos: Renta[] = [];
@@ -29,8 +29,21 @@ export class ReporteComponent {
     console.log(this.citasService.obtenerCookie());
     console.log(this.usuariosService.buscar());
     this.mostrarCitas();
+    this.mostrarCitasAdmin();
     console.log(this.mostrarCitas());
     
+  }
+  async mostrarCitasAdmin(): Promise<void> {
+    try {
+      this.citasAdmin = await this.usuariosService.tomarCitas();
+      const today = new Date();
+      this.clientesActivos = this.citasAdmin.filter(cliente => cliente.fechaFin > today);
+      this.clientesInactivos = this.citasAdmin.filter(cliente => cliente.fechaFin <= today);
+      console.log('Citas activas A:', this.clientesActivos);
+      console.log('Citas inactivas A:', this.clientesInactivos);
+    } catch (error) {
+      console.error("Error al obtener los datos de las citas:", error);
+    }
   }
 
   async mostrarCitas(): Promise<void> {

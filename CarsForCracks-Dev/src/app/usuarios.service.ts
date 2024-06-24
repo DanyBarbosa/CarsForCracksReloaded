@@ -97,7 +97,27 @@ export class UsuariosService {
       const q = query(collection(this.firestore, "citas"), where("correo", "==", this.valor));
       const querySnapshot = await getDocs(q);
       this.clientes = [];  // Asegurarse de que la lista de clientes esté vacía antes de llenarla
-    querySnapshot.forEach((doc) => {
+      querySnapshot.forEach((doc) => {
+        const datosCliente = {  // Crear un nuevo objeto en cada iteración
+            usuario: doc.get("usuario"),
+            auto: doc.get("auto"),
+            dias: doc.get("dias"),
+            fecha: this.convertTimestampToDate(doc.get("fecha")),  // Convertir a Date
+            fechaInicio: this.convertTimestampToDate(doc.get("fechaInicio")),  // Convertir a Date
+            fechaFin: this.convertTimestampToDate(doc.get("fechaFin"))  // Convertir a Date
+        };
+        this.clientes.push(datosCliente);
+    });
+      return this.clientes;
+
+  }
+  async tomarCitas(){
+      // this.valor = this.citasService.obtenerCookie();
+      // const fechaH = new Date;
+      //const q = query(collection(this.firestore, "citas"));
+      const querySnapshot = await getDocs(collection(this.firestore,"citas"));
+      this.clientes = [];  // Asegurarse de que la lista de clientes esté vacía antes de llenarla
+      querySnapshot.forEach((doc) => {
         const datosCliente = {  // Crear un nuevo objeto en cada iteración
             usuario: doc.get("usuario"),
             auto: doc.get("auto"),
