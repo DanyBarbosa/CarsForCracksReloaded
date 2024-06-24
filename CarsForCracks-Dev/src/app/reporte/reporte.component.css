@@ -1,6 +1,6 @@
 #cartas {
     margin: 60px auto; /* Margen exterior */
-    max-width: 1200px; /* Ancho máximo */
+    max-width: 90%; /* Ancho máximo */
     background-color: lightgray;
 }
 .text-center {

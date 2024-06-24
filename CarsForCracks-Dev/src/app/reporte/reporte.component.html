@@ -1,46 +1,54 @@
 <div id="cartas">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 g-4">
         <h1 class="text-center">Reportes Actuales</h1>
-        @for (c of proximas; track c; let i = $index) {
-            <div class="col">
-                <div class="masonry-item">
-                    <div class="card">
-                        <img src="{{c.auto.img}}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Rentador: {{c.usuario.nombre}}</h5>
-                            <p class="card-text">Tel: {{c.usuario.tel}}</p>
-                            <p class="card-text">Corre: {{c.usuario.correo}}</p>
-                            <p class="card-text">Fecha de prestamo: {{c.fechaInicio | date:'dd/MM/yyyy HH:mm'}}</p>
-                            <p class="card-text">Fecha de devolucion: {{c.fechaFin | date:'dd/MM/yyyy HH:mm'}}</p>
-                            <p class="card-text">Auto: {{c.auto.nombre}}</p>
-                            <p class="card-text"><small class="text-muted">{{c.auto.marca}}</small></p>                            
+        @if(citasService.obtenerCookie() != null){
+            @for (c of clientesActivos; track c; let i = $index) {
+                @if (citasService.obtenerCookie() === c.usuario.correo) {
+                    <div class="col">
+                        <div class="masonry-item">
+                            <div class="card">
+                                <img src="{{c.auto.img}}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Rentador: {{c.usuario.nombre}}</h5>
+                                    <p class="card-text">Tel: {{c.usuario.tel}}</p>
+                                    <p class="card-text">Correo: {{c.usuario.correo}}</p>
+                                    <p class="card-text">Fecha de prestamo: {{c.fechaInicio | date:'dd/MM/yyyy HH:mm'}}</p>
+                                    <p class="card-text">Fecha de devolucion: {{c.fechaFin | date:'dd/MM/yyyy HH:mm'}}</p>
+                                    <p class="card-text">Auto: {{c.auto.nombre}}</p>
+                                    <p class="card-text"><small class="text-muted">{{c.auto.marca}}</small></p>                            
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                }
+            }
         }
     </div>
 </div>
 <div id="cartas">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 g-4">
         <h1 class="text-center">Reportes Pasados</h1>
-        @for (c of pasadas; track c; let i = $index) {
-            <div class="col">
-                <div class="masonry-item">
-                    <div class="card">
-                        <img src="{{c.auto.img}}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Rentador: {{c.usuario.nombre}}</h5>
-                            <p class="card-text">Tel: {{c.usuario.tel}}</p>
-                            <p class="card-text">Corre: {{c.usuario.correo}}</p>
-                            <p class="card-text">Fecha de prestamo: {{c.fechaInicio | date:'dd/MM/yyyy HH:mm'}}</p>
-                            <p class="card-text">Fecha de devolucion: {{c.fechaFin | date:'dd/MM/yyyy HH:mm'}}</p>
-                            <p class="card-text">Auto: {{c.auto.nombre}}</p>
-                            <p class="card-text"><small class="text-muted">{{c.auto.marca}}</small></p>                            
+        @if(citasService.obtenerCookie() != null){
+            @for (c of clientesInactivos; track c; let i = $index) {
+                @if (citasService.obtenerCookie() === c.usuario.correo) {
+                    <div class="col">
+                        <div class="masonry-item">
+                            <div class="card">
+                                <img src="{{c.auto.img}}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Rentador: {{c.usuario.nombre}}</h5>
+                                    <p class="card-text">Tel: {{c.usuario.tel}}</p>
+                                    <p class="card-text">Correo: {{c.usuario.correo}}</p>
+                                    <p class="card-text">Fecha de prestamo: {{c.fechaInicio | date:'dd/MM/yyyy HH:mm'}}</p>
+                                    <p class="card-text">Fecha de devolucion: {{c.fechaFin | date:'dd/MM/yyyy HH:mm'}}</p>
+                                    <p class="card-text">Auto: {{c.auto.nombre}}</p>
+                                    <p class="card-text"><small class="text-muted">{{c.auto.marca}}</small></p>                            
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                }
+            }
         }
     </div>
 </div>

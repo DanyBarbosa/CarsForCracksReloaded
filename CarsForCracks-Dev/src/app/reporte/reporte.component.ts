@@ -19,38 +19,31 @@ import { UsuariosService } from '../usuarios.service';
 })
 export class ReporteComponent {
 
-  hoy: Date = new Date();
-  citas: Renta[] = [];
-
-  constructor(private usuarioServicio:UsuariosService) { }
+  clientes: Renta[] = []
+  clientesActivos: Renta[] = [];
+  clientesInactivos: Renta[] = [];
+  constructor(public citasService:CitasService, public usuariosService:UsuariosService) { }
 
   ngOnInit(){
-    console.log(this.usuarioServicio.buscar());
+    const clientes = this.usuariosService.buscar();
+    console.log(this.citasService.obtenerCookie());
+    console.log(this.usuariosService.buscar());
+    this.mostrarCitas();
+    console.log(this.mostrarCitas());
+    
   }
 
-  cargarCitas(): void {
-    const citasString = localStorage.getItem("rentas");
-    if (citasString) {
-      this.citas = JSON.parse(citasString);
+  async mostrarCitas(): Promise<void> {
+    try {
+      this.clientes = await this.usuariosService.buscar();
+      const today = new Date();
+      this.clientesActivos = this.clientes.filter(cliente => cliente.fechaFin > today);
+      this.clientesInactivos = this.clientes.filter(cliente => cliente.fechaFin <= today);
+      console.log('Citas activas:', this.clientesActivos);
+      console.log('Citas inactivas:', this.clientesInactivos);
+    } catch (error) {
+      console.error("Error al obtener los datos de las citas:", error);
     }
   }
 
-  pasadas: Renta[] = [];
-  proximas: Renta[] = [];
-  orden(): void {
-    this.citas.forEach(cita => {
-      cita.fecha = new Date(cita.fecha);
-      cita.fechaInicio = new Date(cita.fechaInicio);
-      cita.fechaFin = new Date(cita.fechaFin);
-      
-      if (this.hoy.getTime() > cita.fechaInicio.getTime()) {
-        this.pasadas.push(cita);
-      } else {
-        this.proximas.push(cita);
-      }
-    });
-    
-    console.log('Citas pasadas:', this.pasadas);
-    console.log('Citas próximas:', this.proximas);
-  }
 }

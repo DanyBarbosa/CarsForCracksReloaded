@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getAuth, updateProfile, signOut, User } from '@angular/fire/auth';
-import { Firestore, collection, doc, setDoc, query, where, getDocs, getDoc, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, doc, setDoc, query, where, getDocs, getDoc, addDoc, Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { Usuarios } from './usuarios';
@@ -96,17 +96,23 @@ export class UsuariosService {
       this.valor = this.citasService.obtenerCookie();
       const q = query(collection(this.firestore, "citas"), where("correo", "==", this.valor));
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        this.datosCliente.usuario = doc.get("usuario");
-        this.datosCliente.auto = doc.get("auto");
-        this.datosCliente.dias = doc.get("dias");
-        this.datosCliente.fecha = doc.get("fecha");
-        this.datosCliente.fechaInicio = doc.get("fechaInicio");
-        this.datosCliente.fechaFin = doc.get("fechaFin");
-        this.clientes.push(this.datosCliente);
-      });
+      this.clientes = [];  // Asegurarse de que la lista de clientes esté vacía antes de llenarla
+    querySnapshot.forEach((doc) => {
+        const datosCliente = {  // Crear un nuevo objeto en cada iteración
+            usuario: doc.get("usuario"),
+            auto: doc.get("auto"),
+            dias: doc.get("dias"),
+            fecha: this.convertTimestampToDate(doc.get("fecha")),  // Convertir a Date
+            fechaInicio: this.convertTimestampToDate(doc.get("fechaInicio")),  // Convertir a Date
+            fechaFin: this.convertTimestampToDate(doc.get("fechaFin"))  // Convertir a Date
+        };
+        this.clientes.push(datosCliente);
+    });
       return this.clientes;
 
+  }
+  private convertTimestampToDate(timestamp: Timestamp): Date {
+    return timestamp.toDate();
   }
 
   cerrar(){
