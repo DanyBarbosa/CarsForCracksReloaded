@@ -33,6 +33,7 @@ export class HeaderComponent{
 
   ngOnInit(): void {
     this.sesion = this.usuariosService.getCurrentUser();
+
   }
 
   // Apartado de accesibilidad web
@@ -44,7 +45,9 @@ export class HeaderComponent{
   @ViewChild('texto', { static: false }) texto!: ElementRef;  
   aux?:number;
   isSubmenuVisible: boolean = false;
-
+  logout(){
+    this.usuariosService.cerrar();
+  }
   toggleSubmenu() {
     this.isSubmenuVisible = !this.isSubmenuVisible;
   }
