@@ -28,11 +28,6 @@ export class HeaderComponent{
   // Apartado de sesiones
   isAuthenticated: boolean = false;
 
-
-  ngOnInit(): void {
-    this.isAuthenticated = this.usuariosService.isLoggedIn();
-  }
-
   // Apartado de accesibilidad web
   
   fontSize: number = 16; // Tamaño inicial de la fuente

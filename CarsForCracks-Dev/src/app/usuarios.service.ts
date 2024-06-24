@@ -120,7 +120,4 @@ export class UsuariosService {
    getCurrentUser(): User | null {
     return this.auth.currentUser;
   }
-
- 
-
 }
