@@ -111,6 +111,64 @@ export class UsuariosService {
       return this.clientes;
 
   }
+
+  async futurasCitas(){
+    const fechaAct = new Date();
+    const q = query(collection(this.firestore, "citas"), where("fechaFin", ">", fechaAct));
+    const querySnapshot = await getDocs(q);
+    const futurasCitas: Renta[] = [];  // Asegurarse de que la lista de clientes esté vacía antes de llenarla
+    querySnapshot.forEach((doc) => {
+      const datosCliente = {  // Crear un nuevo objeto en cada iteración
+          usuario: doc.get("usuario"),
+          auto: doc.get("auto"),
+          dias: doc.get("dias"),
+          fecha: this.convertTimestampToDate(doc.get("fecha")),  // Convertir a Date
+          fechaInicio: this.convertTimestampToDate(doc.get("fechaInicio")),  // Convertir a Date
+          fechaFin: this.convertTimestampToDate(doc.get("fechaFin"))  // Convertir a Date
+      };
+      futurasCitas.push(datosCliente);
+    });
+      return futurasCitas;
+  }
+
+  async pasadasCitas(){
+    const fechaAct = new Date();
+    const q = query(collection(this.firestore, "citas"), where("fechaFin", "<", fechaAct));
+    const querySnapshot = await getDocs(q);
+    const pasadas: Renta[] = [];  // Asegurarse de que la lista de clientes esté vacía antes de llenarla
+    querySnapshot.forEach((doc) => {
+      const datosCliente = {  // Crear un nuevo objeto en cada iteración
+          usuario: doc.get("usuario"),
+          auto: doc.get("auto"),
+          dias: doc.get("dias"),
+          fecha: this.convertTimestampToDate(doc.get("fecha")),  // Convertir a Date
+          fechaInicio: this.convertTimestampToDate(doc.get("fechaInicio")),  // Convertir a Date
+          fechaFin: this.convertTimestampToDate(doc.get("fechaFin"))  // Convertir a Date
+      };
+      pasadas.push(datosCliente);
+    });
+      return pasadas;
+  }
+
+  async citasMarca(){
+    const fechaAct = new Date();
+    const marcaS = 'BMW';
+    const q = query(collection(this.firestore, "citas"), where("auto.marca", "==", marcaS));
+    const querySnapshot = await getDocs(q);
+    const marca: Renta[] = [];  // Asegurarse de que la lista de clientes esté vacía antes de llenarla
+    querySnapshot.forEach((doc) => {
+      const datosCliente = {  // Crear un nuevo objeto en cada iteración
+          usuario: doc.get("usuario"),
+          auto: doc.get("auto"),
+          dias: doc.get("dias"),
+          fecha: this.convertTimestampToDate(doc.get("fecha")),  // Convertir a Date
+          fechaInicio: this.convertTimestampToDate(doc.get("fechaInicio")),  // Convertir a Date
+          fechaFin: this.convertTimestampToDate(doc.get("fechaFin"))  // Convertir a Date
+      };
+      marca.push(datosCliente);
+    });
+      return marca;
+  }
   async tomarCitas(){
       // this.valor = this.citasService.obtenerCookie();
       // const fechaH = new Date;
