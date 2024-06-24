@@ -1,13 +1,41 @@
 .navbar {
-    text-align: left;
-    height: 160px;
-    background-color: rgb(0, 123, 255);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 160px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar a {
+  font-size: 20px;
+}
+
+#logonav {
+  height: 120px; /* Ajusta la altura del logo según sea necesario */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  padding: 15px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #f0f0f0;
+}
+
+.form-control {
+  border-radius: 20px;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+}
+
+.btn img {
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  #logonav {
+    padding-left: 0;
+    height: 100px;
   }
-  .navbar a{
-    font-size: 30px;
-  }
-  #logonav{
-    padding-left: 350px;
-    height: 160px;
-  }
+}
