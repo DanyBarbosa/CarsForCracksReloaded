@@ -7,11 +7,13 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { HomeComponent } from './home/home.component';
 import { TablaComponent } from './tabla/tabla.component';
 import Swal from 'sweetalert2';
+import { LoginComponent } from './login/login.component';
+import { RegistrarseComponent } from './registrarse/registrarse.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, RouterModule, ContactoComponent, HomeComponent, AutomovilComponent, FooterComponent, TablaComponent],
+  imports: [RouterOutlet, HeaderComponent, RouterModule, ContactoComponent, HomeComponent, AutomovilComponent, FooterComponent, TablaComponent, LoginComponent, RegistrarseComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
