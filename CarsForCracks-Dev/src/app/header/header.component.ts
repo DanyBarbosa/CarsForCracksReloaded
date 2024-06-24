@@ -3,6 +3,7 @@ import { RouterModule, Router } from '@angular/router';
 import { OutputComponent } from '../output/output.component';
 import { CommonModule } from '@angular/common';
 import { UsuariosService } from '../usuarios.service';
+import { CitasService } from '../citas.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent{
   wordSpacingIncrement = 2;
   sesion:string|null = null;
 
-  constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public usuariosService:UsuariosService){ }
+  constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public citasService:CitasService){ }
 
   @Output() searchPerformed: EventEmitter<string> = new EventEmitter<string>();
 
@@ -33,8 +34,7 @@ export class HeaderComponent{
 
 
   ngOnInit(): void {
-    this.sesion = this.usuariosService.getCurrentUser();
-
+  
   }
   // Apartado de accesibilidad web
   
@@ -47,7 +47,7 @@ export class HeaderComponent{
   isSubmenuVisible: boolean = false;
   
   logout(){
-    this.usuariosService.cerrar();
+    this.citasService.eliminarCookie();
   }
   toggleSubmenu() {
     this.isSubmenuVisible = !this.isSubmenuVisible;
@@ -68,9 +68,9 @@ export class HeaderComponent{
     }
   }
   
-  cerrarSesion(){
-    this.usuariosService.cerrar();
-  }
+  // cerrarSesion(){
+  //   this.usuariosService.cerrar();
+  // }
   
   toggleInvertColors() {
     this.isInverted = !this.isInverted;
