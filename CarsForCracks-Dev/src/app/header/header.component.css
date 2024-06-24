@@ -1,9 +1,44 @@
 .navbar {
-    text-align: left;
-    height: 160px;
-    background-color: rgb(0, 123, 255);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 160px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar a {
+  font-size: 20px;
+}
+
+#logonav {
+  height: 120px; /* Ajusta la altura del logo según sea necesario */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  padding: 15px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #f0f0f0;
+}
+
+.form-control {
+  border-radius: 20px;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+}
+
+.btn img {
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  #logonav {
+    padding-left: 0;
+    height: 100px;
   }
+
   .navbar a{
     font-size: 30px;
   }
@@ -15,56 +50,101 @@
   .header-blue .navbar-nav .btn-secondary {
     margin-left: auto; /* Alinea el botón a la derecha */
   }
-  
-  .sidebar {
-    position: fixed;
-    top: 0;
-    right: -250px; /* Posición inicial fuera de la pantalla */
-    width: 250px;
-    height: 100%;
-    background-color: #343a40;
-    color: white;
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 60px;
-    z-index: 1000;
-  }
-  
-  .sidebar.active {
-    right: 0; /* Muestra la sidebar */
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    padding: 8px 16px;
-    text-align: left;
-  }
-  
-  .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .sidebar ul li a:hover {
-    background-color: #575d63;
-  }
-
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    margin-bottom: 10px;
-  }
-  
   .button-group {
     display: flex;
     gap: 10px;
   }
   
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px; /* Posición inicial fuera de la pantalla */
+  width: 250px;
+  height: 100%;
+  background-color: #343a40;
+  color: white;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 1000;
+}
+
+.sidebar.active {
+  right: 0; /* Muestra la sidebar */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 8px 16px;
+  text-align: left;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar ul li a:hover {
+  background-color: #575d63;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-dark {
+  background-color: #4c8ae7;
+  color: white;
+}
+
+.btn-dark:hover {
+  background-color: #3a6da0;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+

@@ -85,6 +85,7 @@ formulario={
   'font-weight': 'bold',
   'background-color': 'lightgray',
 }
+
 imgPerf={
   'width': '200px',
   'height': '200px',

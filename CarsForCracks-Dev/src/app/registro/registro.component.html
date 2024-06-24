@@ -1,4 +1,4 @@
-<div class="card mb-3 container">
+<div class="card mb-3 container" style="margin-top: 50px;">
     <img src={{automovil.img}} class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{automovil.nombre}}</h5>
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-<div class="container mb-3" style="padding-left: 310px;">
+<div class="container mb-3" style="padding-left: center;">
     <form class="row g-5" #clienteForm="ngForm">
         <div class="col-12 row g-3">
           <div class="col-md-6">
@@ -29,7 +29,7 @@
           </div>
         </div>
          
-        <div class="col-12"> 
+        <div class="col-12" style="margin-bottom: 90px;"> 
           <button type="submit" class="btn btn-primary" (click)="submit()">Confirmar</button>
         </div>
       </form>

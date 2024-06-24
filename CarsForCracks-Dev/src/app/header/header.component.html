@@ -1,55 +1,61 @@
-<nav class="navbar navbar-expand-lg">
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-      <img id="logonav" src="../../assets/img/Logo Nombre.png" alt="" class="mr-auto">
-    </li>
-  </ul>    
-    <div class="container">
-      
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/home"><strong>Inicio</strong></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contacto"><strong>Contacto</strong></a>
-          </li>
-          <!-- Apartado sobre si hay o no sesion iniciada -->
-          <!-- De momento no hay sesiones iniciadas, lo modificare mas tarde -Carlos -->
-          @if (citasService.obtenerCookie() != null && citasService.obtenerCookie() != 'undefined') {
-            <li class="nav-item">
-              <a class="nav-link" href="/autos"><Strong>Renta</Strong></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/citas"><strong>Reservas</strong></a>
-            </li>
-          }    
-        </ul>
-      </div>
-     @if (citasService.obtenerCookie() == null) {
-       <a style="margin-right: 30px;" class="btn btn-secondary ml-auto" href="iniciarSesion">Log-in</a>
-       <a style="margin-right: 30px;" class="btn btn-secondary ml-auto" href="registroUsr">Sign-up</a>
 
-     }@else {
-       <button style="margin-right: 30px;" class="btn btn-secondary ml-auto" (click)="logout()">Logout</button>
-     }      
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0, 123, 255);">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img id="logonav" src="../../assets/img/Logo Nombre.png" alt=""></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/home"><strong>Inicio</strong></a>
+        </li>
+
+        @if (citasService.obtenerCookie() != null && citasService.obtenerCookie() != 'undefined') {
+          <li class="nav-item">
+            <a class="nav-link" href="/autos"><Strong>Renta</Strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/citas"><strong>Reservas</strong></a>
+          </li>
+        }  
+
+        <li class="nav-item">
+          <a class="nav-link" href="/contacto"><strong>Contacto</strong></a>
+        </li>
+      </ul>
       <button style="margin-right: 30px;" class="btn btn-secondary ml-auto" (click)="toggleSubmenu()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-800q-33 0-56.5-23.5T400-880q0-33 23.5-56.5T480-960q33 0 56.5 23.5T560-880q0 33-23.5 56.5T480-800ZM360-200v-480q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-800l20 80q-56 15-118 25t-122 15v480h-80v-240h-80v240h-80ZM320 0q-17 0-28.5-11.5T280-40q0-17 11.5-28.5T320-80q17 0 28.5 11.5T360-40q0 17-11.5 28.5T320 0Zm160 0q-17 0-28.5-11.5T440-40q0-17 11.5-28.5T480-80q17 0 28.5 11.5T520-40q0 17-11.5 28.5T480 0Zm160 0q-17 0-28.5-11.5T600-40q0-17 11.5-28.5T640-80q17 0 28.5 11.5T680-40q0 17-11.5 28.5T640 0Z"/></svg></button>
-      <!-- <button style="margin-right: 30px;" class="btn btn-secondary ml-auto" (click)="cerrarSesion()">Cerrar Sesion</button> -->
-
-      <div class="d-flex" role="search">
+      <div class="d-flex align-items-center">
         <input class="form-control me-2" type="text" placeholder="Buscar" #buscarTexto (keyup.enter)="buscarAuto(buscarTexto.value)">
-        <button class="btn" type="submit" (click)="buscarAuto(buscarTexto.value)"> <img src="../../assets/img/lupa.png" width="32px"></button>
+        <button class="btn" type="button" (click)="buscarAuto(buscarTexto.value)">
+          <img src="../../assets/img/lupa.png" width="32px" alt="Buscar">
+        </button>
       </div>
-      
-      <!-- Sidebar -->
-      <div class="sidebar" [ngClass]="{ 'active': isSubmenuVisible }">
-        <ul>
-          <li><button class="btn btn-dark boton" (click)="speak()">Lector de pantalla</button></li>
-          <li><button class="btn btn-secondary boton" (click)="increaseFontSize()">Aumentar tamaño</button></li>
-          <li><button class="btn btn-warning boton" (click)="increaseWordSpacing()">Aumentar espaciado</button></li>
-          <li><button class="btn btn-danger boton" (click)="toggleInvertColors()">Invertir colores</button></li>
-        </ul>
-      </div>
+      <ul class="navbar-nav">
+        @if (citasService.obtenerCookie() == null) {
+          <li class="nav-item">
+            <a class="nav-link" href="/login"><strong>Login</strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup"><strong>Signup</strong></a>
+          </li>
+        }@else {
+          <li class="nav-item">
+            <button style="margin-right: 30px;" class="btn btn-secondary ml-auto" (click)="logout()">Logout</button>
+          </li>
+        }
+      </ul>
     </div>
-  </nav>
-  
+     <!-- Sidebar -->
+   <div class="sidebar" [ngClass]="{ 'active': isSubmenuVisible }">
+    <ul>
+      <li><button class="btn btn-dark " (click)="speak()">Lector de pantalla</button></li>
+      <li><button class="btn btn-secondary " (click)="increaseFontSize()">Aumentar tamaño</button></li>
+      <li><button class="btn btn-warning " (click)="increaseWordSpacing()">Aumentar espaciado</button></li>
+      <li><button class="btn btn-danger " (click)="toggleInvertColors()">Invertir colores</button></li>
+    </ul>
+  </div>
+  </div>
+</nav>
