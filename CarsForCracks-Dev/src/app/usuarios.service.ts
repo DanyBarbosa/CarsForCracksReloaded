@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Auth, User, createUserWithEmailAndPassword, getAuth, updateProfile } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, getAuth, updateProfile, signOut, User } from '@angular/fire/auth';
 import { Firestore, collection, doc, setDoc, query, where, getDocs, getDoc, addDoc } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { Usuarios } from './usuarios';
 import { Renta } from './renta';
+import { CitasService } from './citas.service';
 
 
 @Injectable({
@@ -12,15 +13,38 @@ import { Renta } from './renta';
 })
 export class UsuariosService {
 
-  constructor(private auth:Auth, private firestore:Firestore) { }
 
-  valor:string = '';
+  constructor(private auth:Auth, private firestore:Firestore, private citasService:CitasService) {  }
+
+  valor:string|null = '';
   usuario:Usuarios = {
     nombre:'',
     tel:'',
     correo:'',
     pass:''
   }
+  datosCliente:Renta = {
+    fecha: new Date(),
+    fechaInicio: new Date(),
+    fechaFin: new Date(),
+    usuario: {
+      nombre:'',
+      tel:'',
+      correo:'',
+      pass:''
+    },
+    dias:0,
+    auto: {
+      nombre:'',
+      descrip: '',
+      anio: 0,
+      img: '',
+      marca: '',
+      costo: 0,
+    },
+  }
+  
+  clientes: Renta [] = [];
 
   registro(formRegistro:FormGroup){
     setDoc(doc(this.firestore, "usuarios", formRegistro.value.correo),{
@@ -56,21 +80,11 @@ export class UsuariosService {
     });
   }
 
-  estado(){
-    if(this.auth.currentUser != null){
-      console.log("Conectado")
-    }else{
-      console.log("NO Conectado")
-      // return false;
-    }
-
-  }
-
   iniciar(correo:string, pass:string){
     const auth = getAuth();
       signInWithEmailAndPassword(auth, correo, pass)
         .then((userCredential) => {
-          console.log(userCredential.user.email);
+          this.citasService.guardarCookie(String(userCredential.user.email));
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -79,45 +93,53 @@ export class UsuariosService {
   }
 
   async buscar(){
-      this.valor = String(this.auth.currentUser?.email);
-      console.log(this.valor);
+      this.valor = this.citasService.obtenerCookie();
       const q = query(collection(this.firestore, "citas"), where("correo", "==", this.valor));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        console.log(doc.get("usuario.nombre"));
-        console.log(doc.get("correo"));
-        console.log(doc.get("auto"));
-      });    
+        this.datosCliente.usuario = doc.get("usuario");
+        this.datosCliente.auto = doc.get("auto");
+        this.datosCliente.dias = doc.get("dias");
+        this.datosCliente.fecha = doc.get("fecha");
+        this.datosCliente.fechaInicio = doc.get("fechaInicio");
+        this.datosCliente.fechaFin = doc.get("fechaFin");
+        this.clientes.push(this.datosCliente);
+      });
+      return this.clientes;
 
+  }
+
+  cerrar(){
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      this.citasService.eliminarCookie();
+    }).catch((error) => {
+      // An error happened.
+    });
   }
 
 
   async cuenta(){
-    if(this.auth.currentUser?.email != null){
-      const docRef = doc(this.firestore, "usuarios", this.auth.currentUser?.email);
-      const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          this.usuario.correo = docSnap.get("correo");
-          this.usuario.nombre = docSnap.get("nombre");
-          this.usuario.tel = docSnap.get("tel");
-          this.usuario.pass = docSnap.get("pass");
-          return this.usuario;
-        } else {
-          // docSnap.data() will be undefined in this case
+      this.valor = this.citasService.obtenerCookie();
+      if(this.valor != null){
+        const docRef = doc(this.firestore, "usuarios", this.valor);
+        const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            this.usuario.correo = docSnap.get("correo");
+            this.usuario.nombre = docSnap.get("nombre");
+            this.usuario.tel = docSnap.get("tel");
+            this.usuario.pass = docSnap.get("pass");
+            return this.usuario;
+          }
           return null;
-        }
-
-    }
-    return null;
+      }
+      return null;
   }
 
    // Método para verificar si hay un usuario autenticado
-   isLoggedIn(): boolean {
-    return this.auth.currentUser !== null;
-  }
 
    // Método para obtener el usuario actual
-   getCurrentUser(): User | null {
-    return this.auth.currentUser;
+  getCurrentUser(): string |null{
+    return this.citasService.obtenerCookie();
   }
 }

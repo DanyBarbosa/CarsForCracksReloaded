@@ -19,9 +19,9 @@ export class LoginComponent {
       pass: new FormControl(''),
     });
   }
+
   onSubmit(){
     this.usuarioService.iniciar(this.formInicio.value.correo, this.formInicio.value.pass);
-    this.usuarioService.cuenta();
     this.formInicio.reset();
   }
 }

@@ -6,10 +6,11 @@ import { AutomovilComponent } from '../automovil/automovil.component';
 import { TablaComponent } from '../tabla/tabla.component';
 import { DomseguroPipe } from '../domseguro.pipe';
 import { UsuariosService } from '../usuarios.service';
+import { QrComponent } from '../qr/qr.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,CardComponent, CarouselComponent, AutomovilComponent,TablaComponent, DomseguroPipe],
+  imports: [CommonModule, QrComponent, CardComponent, CarouselComponent, AutomovilComponent,TablaComponent, DomseguroPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

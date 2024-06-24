@@ -15,6 +15,7 @@ export class HeaderComponent{
   
   fontSizeIncrement = 2;
   wordSpacingIncrement = 2;
+  sesion:string|null = null;
 
   constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public usuariosService:UsuariosService){ }
 
@@ -25,9 +26,16 @@ export class HeaderComponent{
     this.searchPerformed.emit();
   }
 
+  
   // Apartado de sesiones
   isAuthenticated: boolean = false;
 
+
+
+  ngOnInit(): void {
+    this.sesion = this.usuariosService.getCurrentUser();
+
+  }
   // Apartado de accesibilidad web
   
   fontSize: number = 16; // Tamaño inicial de la fuente
@@ -37,7 +45,10 @@ export class HeaderComponent{
   @ViewChild('texto', { static: false }) texto!: ElementRef;  
   aux?:number;
   isSubmenuVisible: boolean = false;
-
+  
+  logout(){
+    this.usuariosService.cerrar();
+  }
   toggleSubmenu() {
     this.isSubmenuVisible = !this.isSubmenuVisible;
   }
@@ -57,6 +68,9 @@ export class HeaderComponent{
     }
   }
   
+  cerrarSesion(){
+    this.usuariosService.cerrar();
+  }
   
   toggleInvertColors() {
     this.isInverted = !this.isInverted;
