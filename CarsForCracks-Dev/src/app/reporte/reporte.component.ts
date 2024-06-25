@@ -9,6 +9,7 @@ import { CitasService } from '../citas.service';
 import { Automovil } from '../automovil';
 import { log } from 'console';
 import { UsuariosService } from '../usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reporte',
@@ -122,6 +123,41 @@ export class ReporteComponent {
       console.error("Error al obtener los datos de las citas:", error);
     }
   }
+
+  cargarCitas() {
+    this.usuariosService.tomarCitas().then(citas => {
+      this.citasAdmin = citas;
+    });
+  }
+
+  eliminarCita(nombre: string, auto: string, fechaFin: Date) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `Deseas eliminar la cita de ${nombre} con el auto ${auto}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuariosService.eliminarCita(nombre, auto, fechaFin).then(() => {
+          this.cargarCitas(); // Recargar las citas después de eliminar una
+          Swal.fire(
+            'Eliminado!',
+            'La cita ha sido eliminada.',
+            'success'
+          );
+        }).catch((error) => {
+          Swal.fire(
+            'Error!',
+            'Hubo un problema al eliminar la cita.',
+            'error'
+          );
+        });
+      }
+    });
+  }
+
 
   mostrarAllCitas(): void{
     this.mostrarAll = true;
