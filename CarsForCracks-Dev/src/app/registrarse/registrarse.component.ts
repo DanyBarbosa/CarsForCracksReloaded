@@ -20,8 +20,8 @@ export class RegistrarseComponent implements OnInit {
   public loading = false;
   public config = {
     animationType: ngxLoadingAnimationTypes.none,
-    primaryColour: 'rgb(40, 94, 231)',
-    fullScreenBackdrop: true
+    primaryColour: '#007bff',
+    fullScreenBackdrop: true,
   };
 
   constructor(private usuarioService: UsuariosService, private route:Router) {

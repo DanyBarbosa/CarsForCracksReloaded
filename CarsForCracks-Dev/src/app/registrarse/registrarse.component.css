@@ -119,15 +119,3 @@ body, html {
   .links-container a:hover {
     text-decoration: underline;
   }
-  
-
-/*Loading*/
-.custom-loading .ngx-spinner {
-  width: 50px;
-  height: 50px;
-}
-
-.custom-loading .ngx-spinner div {
-  width: 50px;
-  height: 50px;
-}

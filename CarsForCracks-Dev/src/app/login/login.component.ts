@@ -19,6 +19,7 @@ export class LoginComponent {
   public loading = false;
   public config = {
     animationType: ngxLoadingAnimationTypes.none,
+    primaryColour: '#007bff',
     fullScreenBackdrop: true,
   };
 
