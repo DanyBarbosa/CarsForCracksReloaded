@@ -80,16 +80,26 @@ export class UsuariosService {
     });
   }
 
-  iniciar(correo:string, pass:string){
-    const auth = getAuth();
-      signInWithEmailAndPassword(auth, correo, pass)
-        .then((userCredential) => {
-          this.citasService.guardarCookie(String(userCredential.user.email));
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        });
+  // iniciar(correo:string, pass:string){
+  //   const auth = getAuth();
+  //     signInWithEmailAndPassword(auth, correo, pass)
+  //       .then((userCredential) => {
+  //         this.citasService.guardarCookie(String(userCredential.user.email));
+  //       })
+  //       .catch((error) => {
+  //         const errorCode = error.code;
+  //         const errorMessage = error.message;
+  //       });
+  // }
+  iniciar(correo: string, pass: string): Promise<void> {
+    return signInWithEmailAndPassword(this.auth, correo, pass)
+      .then((userCredential) => {
+        this.citasService.guardarCookie(String(userCredential.user.email));
+        return Promise.resolve();
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
   }
 
   async buscar(){
