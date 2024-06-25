@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsuariosService } from '../usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrarse',
@@ -43,8 +44,13 @@ export class RegistrarseComponent implements OnInit {
 
   onSubmit() {
     if (this.formRegistro.valid) {
-      this.usuarioService.registro(this.formRegistro.value);
+      this.usuarioService.registro(this.formRegistro);
       this.formRegistro.reset();
+      Swal.fire({
+        title: "Registro exitoso",
+        text: "Procede a hacer login",
+        icon: "success"
+      });
     }
   }
 
@@ -53,7 +59,6 @@ export class RegistrarseComponent implements OnInit {
   get nombre() { return this.formRegistro.get('nombre');}
   get telefono() { return this.formRegistro.get('tel');}
   get correo() {return this.formRegistro.get('correo');}
- 
 }
 
 
