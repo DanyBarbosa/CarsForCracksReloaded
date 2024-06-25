@@ -101,5 +101,22 @@ body, html {
   .forgot-password:hover {
     text-decoration: underline;
   }
+
+
   
+  .links-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Aumenta el espacio entre los enlaces */
+  }
+  
+  .links-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .links-container a:hover {
+    text-decoration: underline;
+  }
   

@@ -103,3 +103,18 @@ h3 {
 }
 
 
+.links-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espacio entre los enlaces */
+}
+
+.links-container a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.links-container a:hover {
+  text-decoration: underline;
+}
