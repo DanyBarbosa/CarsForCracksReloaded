@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getAuth, updateProfile, signOut, User } from '@angular/fire/auth';
-import { Firestore, collection, doc, setDoc, query, where, getDocs, getDoc, addDoc, Timestamp } from '@angular/fire/firestore';
+import { Firestore, collection, doc, setDoc, query, where, getDocs, getDoc, addDoc, Timestamp, deleteDoc } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { Usuarios } from './usuarios';
@@ -186,8 +186,7 @@ export class UsuariosService {
         };
         this.clientes.push(datosCliente);
     });
-      return this.clientes;
-
+    return this.clientes;
   }
   private convertTimestampToDate(timestamp: Timestamp): Date {
     return timestamp.toDate();
@@ -218,6 +217,31 @@ export class UsuariosService {
           return null;
       }
       return null;
+  }
+
+  async eliminarCita(nombre: string, auto: string, fechaFin: Date): Promise<void> {
+    try {
+      // Convertir fechaFin a Timestamp para la consulta
+      const fechaFinTimestamp = Timestamp.fromDate(fechaFin);
+  
+      // Primero, realizar una consulta para obtener el ID del documento
+      const q = query(
+        collection(this.firestore, "citas"), 
+        where("auto.nombre", "==", auto), 
+        where("usuario.nombre", "==", nombre),
+        where("fechaFin", "==", fechaFinTimestamp)
+      );
+      const querySnapshot = await getDocs(q);
+  
+      // Iterar sobre los documentos encontrados y eliminarlos
+      querySnapshot.forEach(async (doc) => {
+        await deleteDoc(doc.ref);
+        console.log(`Cita de ${nombre} con el auto ${auto} y fecha de finalización ${fechaFin} eliminada correctamente`);
+      });
+  
+    } catch (error) {
+      console.error("Error al eliminar la cita: ", error);
+    }
   }
 
    // Método para verificar si hay un usuario autenticado
