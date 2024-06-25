@@ -23,7 +23,6 @@ export const routes: Routes = [
       { path: 'registro/:id', component: RegistroComponent },
       { path: 'buscador/:nombreA', component: SearchComponent },
       { path: 'citas', component: ReporteComponent },
-      {path: "registroUsr" , component: RegistrarseComponent},
       {path: "iniciarSesion" , component: LoginComponent},
      
     ]
@@ -34,6 +33,7 @@ export const routes: Routes = [
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'registrarse', component: RegistrarseComponent },
+      {path: "registroUsr" , component: RegistrarseComponent},
     ]
   },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }

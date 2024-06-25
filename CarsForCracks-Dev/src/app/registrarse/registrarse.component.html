@@ -1,31 +1,50 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h2 class="text-center mt-5">Registrarse</h2>
-      <div class="card mt-3">
-        <div class="card-body">
-          <form [formGroup]="formRegistro" (submit)="onSubmit()">
-            <div class="mb-3">
-              <label class="form-label">Nombre:</label>
-              <input type="text" class="form-control" formControlName="nombre">
+<div class="container-fluid register-page">
+  <div class="row no-gutters">
+    <div class="col-lg-4 register-panel">
+      <div class="register-content">
+        <img src="../../assets/img/Logo Nombre.png" alt="Car Logo" class="logo">
+        <h3 style="text-align: center; margin-bottom: 30px;">Registrarse</h3>
+        <div class="card mt-3">
+          <div class="card-body">
+            <form [formGroup]="formRegistro" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label class="form-label">Nombre:</label>
+                <input type="text" class="form-control" formControlName="nombre">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Telefono:</label>
+                <input type="text" class="form-control" formControlName="tel">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Correo:</label>
+                <input type="email" class="form-control" formControlName="correo">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" formControlName="pass">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Confirmar Contraseña:</label>
+                <input type="password" class="form-control" formControlName="confirmPass">
+                <div *ngIf="formRegistro.errors?.['passwordMismatch'] && formRegistro.get('confirmPass')?.touched" class="text-danger">
+                  Las contraseñas no coinciden.
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Enviar</button>
+            </form>
+            <div class="text-center mt-3">
+              <a href="/home" class="forgot-password">Regresar a Inicio</a>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Telefono:</label>
-              <input type="text" class="form-control" formControlName="tel">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Correo:</label>
-              <input type="email" class="form-control" formControlName="correo">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contraseña:</label>
-              <input type="password" class="form-control" formControlName="pass">
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Enviar</button>
-          </form>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="col-lg-8 welcome-panel">
+      <div class="welcome-content welcome-content-bottom">
+        <h1 style="font-family: Archivo Black; font-size: 50px;">Renta con <br>nosotros</h1>
       </div>
     </div>
   </div>
 </div>
-<br><br><br>
+
+

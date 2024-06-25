@@ -18,19 +18,42 @@ body, html {
 
 .login-content {
   width: 100%;
+  max-width: 500px; /* Adjust the max width to expand the form */
 }
 
 .logo {
   display: block;
-  margin: 0 auto 30px;
+  margin: 0 auto 20px;
+  width: 50%;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+.form-label {
+  font-size: 14px;
+}
+
+.form-control {
+  font-size: 14px;
+  padding: 10px;
+}
+
+.btn {
+  font-size: 14px;
+  padding: 10px;
 }
 
 .welcome-panel {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Align items to the bottom */
-  padding: 0;
+  justify-content: center;
+  align-items: center;
   position: relative;
+  padding: 0;
+  background: url('../../assets/img/1366x768_px_car-690887.jpg!d') no-repeat center center;
+  background-size: cover;
 }
 
 .welcome-panel::before {
@@ -40,10 +63,9 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('../../assets/img/car_Citro_n-153641.jpg!d') no-repeat center center;
-  background-size: cover;
+  background: inherit;
+  filter: brightness(50%); /* Darken the image */
   z-index: 1;
-  filter: brightness(50%);
 }
 
 .welcome-content {
@@ -51,17 +73,33 @@ body, html {
   z-index: 2;
   text-align: right;
   color: #fff;
-  padding: 110px;
-  backdrop-filter: rgba(0, 0, 0, 0.5); /* Slight dark overlay */
-  margin-bottom: 50px; /* Adjust this value to position the text higher or lower */
+  padding: 10px;
+  padding-left: 300px;
+ 
+}
+
+.welcome-content-bottom {
+  margin-top: auto;
+  padding-bottom: 40px;
 }
 
 .welcome-content h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .welcome-content p {
-  font-size: 24px;
+  font-size: 14px;
 }
+
+.forgot-password {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
 
