@@ -25,10 +25,12 @@ body, html {
   margin: 0 auto 30px;
 }
 
-
 .welcome-panel {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align items to the bottom */
   padding: 0;
+  position: relative;
 }
 
 .welcome-panel::before {
@@ -47,11 +49,11 @@ body, html {
 .welcome-content {
   position: relative;
   z-index: 2;
-  text-align: center;
+  text-align: right;
   color: #fff;
-  padding: 20px;
+  padding: 110px;
   backdrop-filter: rgba(0, 0, 0, 0.5); /* Slight dark overlay */
-  height: 100%;
+  margin-bottom: 50px; /* Adjust this value to position the text higher or lower */
 }
 
 .welcome-content h1 {
@@ -62,3 +64,4 @@ body, html {
 .welcome-content p {
   font-size: 24px;
 }
+
