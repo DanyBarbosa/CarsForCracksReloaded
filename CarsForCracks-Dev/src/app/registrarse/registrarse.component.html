@@ -10,14 +10,27 @@
               <div class="mb-3">
                 <label class="form-label">Nombre:</label>
                 <input type="text" class="form-control" formControlName="nombre">
+                <div *ngIf="nombre?.errors?.['required'] && nombre?.touched" class="text-danger">
+                  Campo obligatoio
+                </div>
               </div>
               <div class="mb-3">
                 <label class="form-label">Telefono:</label>
                 <input type="text" class="form-control" formControlName="tel">
+                <div *ngIf="telefono?.touched && telefono?.invalid" class="text-danger">
+                  <div *ngIf="telefono?.errors?.['required']">El telefono es requerido.</div>
+                  <div *ngIf="telefono?.errors?.['minlength']">El telefono es de 10 caracteres.</div>
+                  <div *ngIf="telefono?.errors?.['telefonoEsNumero']" class="text-danger"> Ingrese un telefono valido.</div>            
+                </div>
+                
+                <!-- ========================= -->
               </div>
               <div class="mb-3">
                 <label class="form-label">Correo:</label>
                 <input type="email" class="form-control" formControlName="correo">
+              </div>
+              <div *ngIf="correo?.errors?.['required'] && correo?.touched" class="text-danger">
+                Campo obligatoio
               </div>
               <div class="mb-3">
                 <label class="form-label">Contraseña:</label>
@@ -26,11 +39,11 @@
               <div class="mb-3">
                 <label class="form-label">Confirmar Contraseña:</label>
                 <input type="password" class="form-control" formControlName="confirmPass">
-                <div *ngIf="formRegistro.errors?.['passwordMismatch'] && formRegistro.get('confirmPass')?.touched" class="text-danger" style="font-size: 10px;">
+                <div *ngIf="formRegistro.errors?.['passwordMismatch'] && formRegistro.get('confirmPass')?.touched" class="text-danger">
                   Las contraseñas no coinciden.
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary w-100">Enviar</button>
+              <button type="submit" class="btn btn-primary w-100" [disabled]="formRegistro.invalid">Enviar</button>
             </form>
             <div class="text-center mt-3 links-container">
               <a href="/home" class="forgot-password">Regresar a Inicio</a>

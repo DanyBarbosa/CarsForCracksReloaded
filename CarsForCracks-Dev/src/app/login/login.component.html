@@ -11,9 +11,8 @@
             <div *ngIf="correo?.touched && correo?.invalid" class="text-danger">
               <div *ngIf="correo?.errors?.['required']">El usuario es requerido.</div>
               <div *ngIf="correo?.errors?.['minlength']">El usuario debe tener al menos 10 caracteres.</div>
-              <div *ngIf="correo?.errors?.['noAroba']" class="text-danger"> El correo debe contener el símbolo "&#64;".
-         </div>            
-        </div>
+              <div *ngIf="correo?.errors?.['noAroba']" class="text-danger"> El correo debe contener el símbolo "&#64;".</div>            
+            </div>
           </div>
           <div class="mb-3">
             <label for="pass" class="form-label">Contraseña</label>
