@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsuariosService } from '../usuarios.service';
+import Swal from 'sweetalert2';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrarse',
@@ -13,7 +15,7 @@ import { UsuariosService } from '../usuarios.service';
 export class RegistrarseComponent implements OnInit {
   formRegistro: FormGroup;
 
-  constructor(private usuarioService: UsuariosService) {
+  constructor(private usuarioService: UsuariosService, private route:Router) {
     this.formRegistro = new FormGroup({
       nombre: new FormControl('', Validators.required),
       tel: new FormControl('', [Validators.required, this.telefonoValidator, Validators.minLength(10)]),
@@ -41,10 +43,28 @@ export class RegistrarseComponent implements OnInit {
     return null;
   }
 
-  onSubmit() {
+  async onSubmit() {
+    console.log(this.formRegistro.value.correo);
     if (this.formRegistro.valid) {
-      this.usuarioService.registro(this.formRegistro.value);
-      this.formRegistro.reset();
+      try {
+        console.log(this.formRegistro.value.correo);
+        console.log(this.formRegistro.value);
+        await this.usuarioService.registro(this.formRegistro); // Esperar a que la promesa se resuelva
+        Swal.fire({
+          title: "Registro exitoso",
+          text: "Usuario registrado correctamente",
+          icon: "success"
+        }).then(() => {
+          this.route.navigate(['/home']); // Redirigir a la página de inicio
+        });
+        this.formRegistro.reset();
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salió mal, intenta de nuevo"
+        });
+      }
     }
   }
 
@@ -53,7 +73,6 @@ export class RegistrarseComponent implements OnInit {
   get nombre() { return this.formRegistro.get('nombre');}
   get telefono() { return this.formRegistro.get('tel');}
   get correo() {return this.formRegistro.get('correo');}
- 
 }
 
 
