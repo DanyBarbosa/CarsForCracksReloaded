@@ -1,0 +1,34 @@
+/* Estilos para el contenedor principal */
+.qr-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  /* Estilos para centrar el contenido del componente */
+  .qr-text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Estilos para el encabezado */
+  .qr-text-center h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el contenedor del QR */
+  .qr-wrapper {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .qr-wrapper:hover {
+    transform: scale(1.05);
+  }

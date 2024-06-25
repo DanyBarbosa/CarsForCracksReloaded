@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validatio
 import { UsuariosService } from '../usuarios.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ import Swal from 'sweetalert2';
 export class LoginComponent {
   formInicio:FormGroup;
 
-  constructor(private usuarioService: UsuariosService) {
+
+  constructor(private usuarioService: UsuariosService, private route:Router) {
     this.formInicio = new FormGroup({
       correo: new FormControl('', [Validators.required, Validators.minLength(10), this.contieneAroba]),
       pass: new FormControl('', [Validators.required])
@@ -64,6 +66,8 @@ onSubmit() {
         title: "Login exitoso",
         text: "Bienvenido al sistema",
         icon: "success"
+      }).then(() => {
+        this.route.navigate(['/home']); // Redirigir a la página de inicio
       });
       this.formInicio.reset();
     })
