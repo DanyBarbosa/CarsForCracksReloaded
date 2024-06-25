@@ -19,7 +19,7 @@ export class HeaderComponent{
   wordSpacingIncrement = 2;
   sesion:string|null = null;
 
-  constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public citasService:CitasService){ }
+  constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public citasService:CitasService, private route:Router){ }
 
   @Output() searchPerformed: EventEmitter<string> = new EventEmitter<string>();
 
@@ -60,6 +60,7 @@ export class HeaderComponent{
     }).then((result) => {
       if (result.isConfirmed) {
         this.citasService.eliminarCookie();
+        this.route.navigate(['/home']); // Redirigir a la página de inicio
       }
     });
   }
