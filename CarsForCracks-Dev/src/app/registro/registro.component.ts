@@ -14,6 +14,8 @@ import { FloatLabelModule } from "primeng/floatlabel";
 import Swal from 'sweetalert2';
 import { UsuariosService } from '../usuarios.service';
 import { Usuarios } from '../usuarios';
+import { HttpClient } from '@angular/common/http';
+
 
 
 
@@ -51,7 +53,7 @@ export class RegistroComponent {
     },
   }
   
-  constructor(public automovilService: AutoService, public activatedRoute:ActivatedRoute, private citasService:CitasService, private usuarioService:UsuariosService){
+  constructor(public automovilService: AutoService, public activatedRoute:ActivatedRoute, private citasService:CitasService, private usuarioService:UsuariosService, private http: HttpClient){
     this.activatedRoute.params.subscribe(params => {
       this.automovil = automovilService.getAuto(params['id']);
     })
@@ -76,6 +78,17 @@ export class RegistroComponent {
           this.datosCliente.dias = numero;
           this.datosCliente.fechaInicio = this.startDate;
           this.datosCliente.fechaFin = this.endDate;
+
+          this.http.post('http://localhost:3001/registro', { email: this.usuario.correo, datosCliente: this.datosCliente })
+          .subscribe(
+            response => {
+              console.log('Respuesta del servidor:', response);
+            },
+            error => {
+              console.error('Error al enviar los datos:', error);
+            }
+          );
+
           this.usuarioService.registroCita(this.datosCliente);
           // this.citasService.agregarRenta(this.datosCliente);
           this.usuarioService.buscar();
