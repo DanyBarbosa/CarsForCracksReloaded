@@ -4,17 +4,18 @@ import { UsuariosService } from '../usuarios.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NgxLoadingModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   formInicio:FormGroup;
-
+  loading = false;
 
   constructor(private usuarioService: UsuariosService, private route:Router) {
     this.formInicio = new FormGroup({
@@ -58,25 +59,32 @@ onSubmit() {
     return;
   }
 
+  this.loading = true;
   const { correo, pass } = this.formInicio.value;
 
   this.usuarioService.iniciar(correo, pass)
     .then(() => {
-      Swal.fire({
-        title: "Login exitoso",
-        text: "Bienvenido al sistema",
-        icon: "success"
-      }).then(() => {
-        this.route.navigate(['/home']); // Redirigir a la página de inicio
-      });
-      this.formInicio.reset();
+      setTimeout(() => {
+        this.loading = false;
+        Swal.fire({
+          title: "Login exitoso",
+          text: "Bienvenido al sistema",
+          icon: "success"
+        }).then(() => {
+          this.route.navigate(['/home']); // Redirigir a la página de inicio
+        });
+        this.formInicio.reset();
+      }, 3000); // simulando una operación de carga
     })
     .catch((error) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Algo salió mal, intenta de nuevo"
-      });
+      setTimeout(() => {
+        this.loading = false;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salió mal, intenta de nuevo"
+        });
+      }, 3000); // simulando una operación de carga
     });
 }
 
