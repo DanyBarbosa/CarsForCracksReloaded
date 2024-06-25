@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UsuariosService } from '../usuarios.service';
 import Swal from 'sweetalert2';
 import { Route, Router } from '@angular/router';
-import { NgxLoadingModule } from 'ngx-loading';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @Component({
   selector: 'app-registrarse',
@@ -15,7 +15,14 @@ import { NgxLoadingModule } from 'ngx-loading';
 })
 export class RegistrarseComponent implements OnInit {
   formRegistro: FormGroup;
-  loading = false;
+  showingTemplate = false;
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+  public loading = false;
+  public config = {
+    animationType: ngxLoadingAnimationTypes.none,
+    primaryColour: 'rgb(40, 94, 231)',
+    fullScreenBackdrop: true
+  };
 
   constructor(private usuarioService: UsuariosService, private route:Router) {
     this.formRegistro = new FormGroup({

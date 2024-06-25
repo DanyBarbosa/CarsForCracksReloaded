@@ -127,3 +127,14 @@ h3 {
     display: none; /* O esconde el panel de bienvenida en pantallas pequeñas */
   }
 }
+
+/*Loading*/
+ngx-loading {
+  width: 500px; 
+  height: 500px; 
+}
+
+.custom-loading .ngx-spinner div {
+  width: 500px;
+  height: 500px; 
+}

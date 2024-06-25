@@ -37,4 +37,11 @@
     </div>
   </div>
 </div>
-<ngx-loading [show]="loading"></ngx-loading>
+<ngx-loading
+      [show]="loading"
+      [config]="{
+        animationType: ngxLoadingAnimationTypes.circleSwish,
+        primaryColour: 'rgb(40, 94, 231)',
+        fullScreenBackdrop: true,
+      }" class="custom-loading">
+</ngx-loading>

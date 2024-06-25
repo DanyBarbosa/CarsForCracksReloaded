@@ -4,7 +4,7 @@ import { UsuariosService } from '../usuarios.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { NgxLoadingModule } from 'ngx-loading';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,12 @@ import { NgxLoadingModule } from 'ngx-loading';
 })
 export class LoginComponent {
   formInicio:FormGroup;
-  loading = false;
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+  public loading = false;
+  public config = {
+    animationType: ngxLoadingAnimationTypes.none,
+    fullScreenBackdrop: true,
+  };
 
   constructor(private usuarioService: UsuariosService, private route:Router) {
     this.formInicio = new FormGroup({
