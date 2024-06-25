@@ -1,32 +1,32 @@
 <div class="container-fluid login-page">
-    <div class="row">
-      <div class="col-lg-4 login-panel">
-        <div class="login-content">
-          <img src="../../assets/img/Logo Nombre.png" alt="Car Logo" class="logo">
-          <h3>Login</h3>
-          <form [formGroup]="formInicio" (submit)="onSubmit()">
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Enter username" formControlName="correo">
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Enter password" formControlName="pass">
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-            <div class="text-center mt-3">
-              <a href="#" class="forgot-password">Forgot password?</a>
-            </div>
-          </form>
-        </div>
+  <div class="row no-gutters">
+    <div class="col-lg-4 login-panel">
+      <div class="login-content">
+        <img src="../../assets/img/Logo Nombre.png" alt="Car Logo" class="logo">
+        <h3 style="text-align: center; margin-bottom: 30px;">Iniciar Sesión</h3>
+        <form [formGroup]="formInicio" (submit)="onSubmit()">
+          <div class="mb-3">
+            <label for="username" class="form-label">Correo</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" formControlName="correo">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" formControlName="pass">
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+          <div class="text-center mt-3">
+            <a href="/home" class="forgot-password">Inicio</a>
+          </div>
+        </form>
+
       </div>
-      <div class="col-lg-8 welcome-panel">
-        <div class="welcome-content">
-          <h1>Welcome.</h1>
-          <p>Your journey begins here.</p>
-          <img src="path/to/car-image.jpg" alt="Car Image" class="img-fluid">
-        </div>
+    </div>
+    <div class="col-lg-8 welcome-panel">
+      <div class="welcome-content welcome-content-bottom">
+        <h1 style="font-size: 80px;  font-family: Archivo Black;">Bienvenido</h1>
+        <p style="font-size: 30px;  font-family: 'Times New Roman', Times, serif;">Puro pa'  delante</p>
       </div>
     </div>
   </div>
+</div>
 
