@@ -32,7 +32,9 @@ export class LoginComponent {
   }
 
  onSubmit(){
-    const resultado = true;
+    
+  const resultado = true; // Siempre se activa la alerta sobre que se hizo el inicio de sesion exitoso 
+   this.usuarioService.iniciar(this.formInicio.value.correo, this.formInicio.value.pass);
     if(resultado){
       Swal.fire({
         title: "Login exitoso",
