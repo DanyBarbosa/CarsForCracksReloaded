@@ -148,3 +148,11 @@
   background-color: #c82333;
 }
 
+@media (max-width: 768px) {
+  .login-panel {
+    padding: 20px;
+  }
+  .welcome-panel {
+    display: none; /* O esconde el panel de bienvenida en pantallas pequeñas */
+  }
+}

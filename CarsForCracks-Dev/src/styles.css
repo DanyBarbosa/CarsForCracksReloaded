@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@media (max-width: 768px) {
+    .login-panel {
+      padding: 20px;
+    }
+    .welcome-panel {
+      display: none; /* O esconde el panel de bienvenida en pantallas pequeñas */
+    }
+  }
+  
