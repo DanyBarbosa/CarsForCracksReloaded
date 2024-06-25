@@ -4,6 +4,7 @@ import { OutputComponent } from '../output/output.component';
 import { CommonModule } from '@angular/common';
 import { UsuariosService } from '../usuarios.service';
 import { CitasService } from '../citas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -47,7 +48,20 @@ export class HeaderComponent{
   isSubmenuVisible: boolean = false;
   
   logout(){
-    this.citasService.eliminarCookie();
+    Swal.fire({
+      title: "Estas seguro",
+      text: "Se cerrara tu sesion",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No, mantener sesion",
+      confirmButtonText: "Si, cerrar sesion"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.citasService.eliminarCookie();
+      }
+    });
   }
   toggleSubmenu() {
     this.isSubmenuVisible = !this.isSubmenuVisible;
