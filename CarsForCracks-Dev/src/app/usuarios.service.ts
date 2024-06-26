@@ -267,6 +267,23 @@ export class UsuariosService {
       }
       return null;
   }
+
+  async cuentaNombre(): Promise<string> {
+    this.valor = this.citasService.obtenerCookie();
+    if (this.valor != null) {
+        const docRef = doc(this.firestore, "usuarios", this.valor);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            this.usuario.nombre = docSnap.get("nombre");
+            return this.usuario.nombre;
+        }
+        return "";
+    }
+    return "";
+}
+
+
+
   async getCorreo(tel:string):Promise<string>{
     const q = query(collection(this.firestore, "usuarios"), where("tel", "==", tel));
     var correo = '';

@@ -156,3 +156,29 @@
     display: none; /* O esconde el panel de bienvenida en pantallas pequeñas */
   }
 }
+
+.btn-usr {
+  background-color: #5bc0de; /* Azul claro */
+  border-color: #46b8da; /* Azul claro oscuro */
+  color: white; /* Texto blanco */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Transiciones suaves */
+}
+
+.btn-usr:hover {
+  background-color: #31b0d5; /* Azul claro más oscuro en hover */
+  border-color: #269abc; /* Azul más oscuro en hover */
+}
+
+.btn-usr:active {
+  background-color: #269abc; /* Azul más oscuro en active */
+  border-color: #1b6d85; /* Azul aún más oscuro en active */
+}
+
+.btn-usr:focus {
+  outline: none; /* Sin contorno */
+  box-shadow: 0 0 0 2px rgba(91, 192, 222, 0.5); /* Sombra azul claro */
+}
+
