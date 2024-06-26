@@ -4,7 +4,7 @@ import { UsuariosService } from '../usuarios.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { NgxLoadingModule } from 'ngx-loading';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +14,19 @@ import { NgxLoadingModule } from 'ngx-loading';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
   formInicioCorreo:FormGroup;
   formInicioTelefono:FormGroup;
-  loading = false;
   metodoSeleccionado: string | null = null;
+
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+  public loading = false;
+  public config = {
+    animationType: ngxLoadingAnimationTypes.none,
+    primaryColour: '#007bff',
+    fullScreenBackdrop: true,
+  };
+
 
   constructor(private usuarioService: UsuariosService, private route:Router) {
     this.formInicioCorreo = new FormGroup({

@@ -28,6 +28,29 @@
 
           </div>
         </div>
+
+        <div class="col-md-6">
+          <label for="usoPersonal" class="form-label">¿El auto es uso personal?</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="usoPersonal" id="usoPersonalSi" value="si" [(ngModel)]="usoPersonal">
+            <label class="form-check-label" for="usoPersonalSi">Sí</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="usoPersonal" id="usoPersonalNo" value="no" [(ngModel)]="usoPersonal">
+            <label class="form-check-label" for="usoPersonalNo">No</label>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <label for="tipoUso" class="form-label">Tipo de uso que se le dará al auto</label>
+          <select class="form-select" id="tipoUso" name="tipoUso" [(ngModel)]="tipoUso">
+            <option value="">Seleccionar...</option>
+            <option value="servicio">Para un servicio</option>
+            <option value="evento">Para un evento</option>
+            <option value="viaje">Para un viaje</option>
+          </select>
+        </div>
+        
          
         <div class="col-12" style="margin-bottom: 90px;"> 
           <button type="submit" class="btn btn-primary" (click)="submit()">Confirmar</button>
