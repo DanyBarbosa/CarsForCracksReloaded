@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { QRCodeModule } from 'angularx-qrcode';
 
@@ -10,14 +11,23 @@ import { QRCodeModule } from 'angularx-qrcode';
   styleUrl: './qr.component.css'
 })
 export class QrComponent {
-  constructor(private location: Location) {
-    const currentUrl=window.location.origin;
+  qrData: string = '';
+
+  constructor(private location: Location, private http: HttpClient) {
+    const currentUrl = window.location.origin;
     this.generateQR(currentUrl);
   }
-  qrData: string = '';
-  
-  generateQR(currentUrl: String) {
-      const randomIndex = Math.floor(Math.random() * 12);
-      this.qrData = `${currentUrl}/registro/${randomIndex}`;
+
+  generateQR(currentUrl: string) {
+    this.http.get<{ number: number }>('http://localhost:3002/random-number')
+      .subscribe(
+        (response) => {
+          const randomIndex = response.number;
+          this.qrData = `${currentUrl}/registro/${randomIndex}`;
+        },
+        (error) => {
+          console.error('no obtiene el numero', error);
+        }
+      );
   }
 }

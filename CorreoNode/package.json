@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"node app.js\" \"node app2.js\""
+    "start": "concurrently \"node app.js\" \"node app2.js\" \"node app3.js\""
   },
   "keywords": [],
   "author": "",
