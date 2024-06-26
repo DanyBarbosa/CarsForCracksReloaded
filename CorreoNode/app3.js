@@ -10,10 +10,10 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/random-number', (req, res) => {
-    const randomNumber = Math.floor(Math.random() * 12);
-    res.json({ number: randomNumber });
-});
+// app.get('/random-number', (req, res) => {
+//     const randomNumber = Math.floor(Math.random() * 12) + 1;
+//     res.json({ number: randomNumber });
+// });
 
 app.listen(port, () => {
     console.log(`API listening at http://localhost:${port}`);

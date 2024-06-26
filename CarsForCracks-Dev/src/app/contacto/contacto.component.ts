@@ -5,6 +5,7 @@ import { RatingModule } from 'primeng/rating';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contacto',
@@ -45,7 +46,12 @@ export class ContactoComponent {
         }, error => {
           console.log('Error al enviar el correo', error);
         });
-        alert("Su mensaje será respondido en breve.");
+        Swal.fire({
+          title: 'Gracias!',
+          text: 'Gracias por tu comentario. Te responderemos a la brevedad.',
+          icon:'success',
+          confirmButtonText: 'Aceptar'
+        });
     } else {
       alert("Por favor, complete el formulario correctamente.");
     }

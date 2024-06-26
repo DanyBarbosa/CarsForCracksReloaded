@@ -1,8 +1,8 @@
+import { UsuariosService } from './../usuarios.service';
 import { Component, Output, EventEmitter, output, AfterViewInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { OutputComponent } from '../output/output.component';
 import { CommonModule } from '@angular/common';
-import { UsuariosService } from '../usuarios.service';
 import { CitasService } from '../citas.service';
 import Swal from 'sweetalert2';
 
@@ -19,7 +19,7 @@ export class HeaderComponent{
   wordSpacingIncrement = 2;
   sesion:string|null = null;
 
-  constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public citasService:CitasService, private route:Router){ }
+  constructor(private router:Router, private renderer: Renderer2, private el: ElementRef, public citasService:CitasService, private route:Router, private usuarioService:UsuariosService){ }
 
   @Output() searchPerformed: EventEmitter<string> = new EventEmitter<string>();
 
@@ -35,7 +35,7 @@ export class HeaderComponent{
 
 
   ngOnInit(): void {
-  
+    this.obtenerNombre();
   }
   // Apartado de accesibilidad web
   
@@ -114,6 +114,12 @@ export class HeaderComponent{
     const newWordSpacing = (parseFloat(currentWordSpacing) || 0) + this.wordSpacingIncrement + 'px';
 
     bodyElement.style.wordSpacing = newWordSpacing;
+  }
+
+  nombreUsuario: string = '';
+
+   async obtenerNombre(): Promise<void> {
+    this.nombreUsuario = await this.usuarioService.cuentaNombre();
   }
 
   }
