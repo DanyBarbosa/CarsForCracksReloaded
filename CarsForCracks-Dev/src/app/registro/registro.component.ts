@@ -32,6 +32,8 @@ export class RegistroComponent {
   automovil!:Automovil;
   enviado:boolean = false;
   usuario: Usuarios | null = null;
+  usoPersonal: string = "";
+  tipoUso: string = "";
   datosCliente:Renta = {
     fecha: new Date(),
     fechaInicio: new Date(),

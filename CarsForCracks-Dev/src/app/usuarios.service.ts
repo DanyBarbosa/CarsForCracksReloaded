@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, getAuth, updateProfile, signOut, User } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, getAuth, updateProfile, signOut, User, signInWithPhoneNumber, RecaptchaVerifier } from '@angular/fire/auth';
 import { Firestore, collection, doc, setDoc, query, where, getDocs, getDoc, addDoc, Timestamp, deleteDoc } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { signInWithEmailAndPassword } from '@firebase/auth';
@@ -134,6 +134,35 @@ export class UsuariosService {
 
   }
 
+  loginConTelefono({telefono}:any){
+    const tel = String(telefono);
+    const applicationVerifier=new RecaptchaVerifier(this.auth,'recaptcha-container', {
+      size: 'invisible',
+      callback: (response: any) => {
+        console.log(telefono);
+        console.log('Recaptcha verified');
+
+      }
+    });
+   return signInWithPhoneNumber(this.auth, telefono, applicationVerifier)
+    .then(confirmationResult => {
+      const verificationCode = prompt('Por favor, ingrese el código de verificación que recibió en su teléfono');
+      if (verificationCode != null) {
+        // Usamos el código de verificación para confirmar el inicio de sesión
+        confirmationResult.confirm(verificationCode)
+        .then(result => {
+          console.log('Sesion Iniciada');
+          console.log(result)
+        }).catch(error => {
+          console.log(error)
+        })
+      } 
+    })
+    .catch(error => {
+      console.log(error)
+    });
+  }
+
   async futurasCitas(){
     const fechaAct = new Date();
     const q = query(collection(this.firestore, "citas"), where("fechaFin", ">", fechaAct));
@@ -210,6 +239,7 @@ export class UsuariosService {
     });
     return this.clientes;
   }
+
   private convertTimestampToDate(timestamp: Timestamp): Date {
     return timestamp.toDate();
   }
