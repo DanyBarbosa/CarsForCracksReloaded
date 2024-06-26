@@ -14,13 +14,20 @@ import { NgxLoadingModule } from 'ngx-loading';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  formInicio:FormGroup;
+  formInicioCorreo:FormGroup;
+  formInicioTelefono:FormGroup;
   loading = false;
+  metodoSeleccionado: string | null = null;
 
   constructor(private usuarioService: UsuariosService, private route:Router) {
-    this.formInicio = new FormGroup({
+    this.formInicioCorreo = new FormGroup({
       correo: new FormControl('', [Validators.required, Validators.minLength(10), this.contieneAroba]),
       pass: new FormControl('', [Validators.required])
+    });
+
+    this.formInicioTelefono = new FormGroup({
+      // telefono: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]),
+      telefono: new FormControl
     });
   }
   // Validacion personalizada para el campo de usuario
@@ -34,10 +41,14 @@ export class LoginComponent {
     return null;
   }
 
+  seleccionarMetodo(metodo: string): void {
+    this.metodoSeleccionado = metodo;
+  }
+
 //  onSubmit(){
     
 //   const resultado = true; // Siempre se activa la alerta sobre que se hizo el inicio de sesion exitoso 
-//    this.usuarioService.iniciar(this.formInicio.value.correo, this.formInicio.value.pass);
+//    this.usuarioService.iniciar(this.formInicioCorreo.value.correo, this.formInicioCorreo.value.pass);
 //     if(resultado){
 //       Swal.fire({
 //         title: "Login exitoso",
@@ -51,16 +62,16 @@ export class LoginComponent {
 //         text: "Algo salio mal, intenta de nuevo"
 //       });
 //     }
-//     this.formInicio.reset();
+//     this.formInicioCorreo.reset();
 //   }
 
-onSubmit() {
-  if (this.formInicio.invalid) {
+onSubmitCorreo() {
+  if (this.formInicioCorreo.invalid) {
     return;
   }
 
   this.loading = true;
-  const { correo, pass } = this.formInicio.value;
+  const { correo, pass } = this.formInicioCorreo.value;
 
   this.usuarioService.iniciar(correo, pass)
     .then(() => {
@@ -73,7 +84,7 @@ onSubmit() {
         }).then(() => {
           this.route.navigate(['/home']); // Redirigir a la página de inicio
         });
-        this.formInicio.reset();
+        this.formInicioCorreo.reset();
       }, 3000); // simulando una operación de carga
     })
     .catch((error) => {
@@ -88,6 +99,44 @@ onSubmit() {
     });
 }
 
-  get correo() { return this.formInicio.get('correo'); }
-  get pass() { return this.formInicio.get('pass'); }
+onSubmitTelefono(): void {
+  if (this.formInicioTelefono.invalid) {
+    return;
+  }
+
+  this.loading = true;
+  const { telefono } = this.formInicioTelefono.value;
+  // const telefonoStr = String("+52" + telefono);
+
+  // console.log(telefonoStr);
+
+  this.usuarioService.loginConTelefono({telefono})
+    .then(() => {
+      setTimeout(() => {
+        this.loading = false;
+        Swal.fire({
+          title: "Login exitoso",
+          text: "Bienvenido al sistema",
+          icon: "success"
+        }).then(() => {
+          this.route.navigate(['/home']); // Redirigir a la página de inicio
+        });
+        this.formInicioTelefono.reset();
+      }, 3000); // simulando una operación de carga
+    })
+    .catch((error) => {
+      setTimeout(() => {
+        this.loading = false;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salió mal, intenta de nuevo"
+        });
+      }, 3000); // simulando una operación de carga
+    });
 }
+
+  get correo() { return this.formInicioCorreo.get('correo'); }
+  get pass() { return this.formInicioCorreo.get('pass'); }
+}
+
