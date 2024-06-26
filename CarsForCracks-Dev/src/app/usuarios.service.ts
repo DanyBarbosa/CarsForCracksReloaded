@@ -103,6 +103,7 @@ export class UsuariosService {
   //         const errorMessage = error.message;
   //       });
   // }
+
   iniciar(correo: string, pass: string): Promise<void> {
     return signInWithEmailAndPassword(this.auth, correo, pass)
       .then((userCredential) => {
@@ -134,34 +135,30 @@ export class UsuariosService {
 
   }
 
-  loginConTelefono({telefono}:any){
+  async loginConTelefono({telefono}: any) {
     const tel = String(telefono);
-    const applicationVerifier=new RecaptchaVerifier(this.auth,'recaptcha-container', {
+    let correo: string = '';
+    
+    const applicationVerifier = new RecaptchaVerifier(this.auth, 'recaptcha-container', {
       size: 'invisible',
-      callback: (response: any) => {
-        console.log(telefono);
-        console.log('Recaptcha verified');
-
-      }
+      callback: (response: any) => {}
     });
-   return signInWithPhoneNumber(this.auth, telefono, applicationVerifier)
-    .then(confirmationResult => {
+    
+    try {
+      const confirmationResult = await signInWithPhoneNumber(this.auth, telefono, applicationVerifier);
       const verificationCode = prompt('Por favor, ingrese el código de verificación que recibió en su teléfono');
+      
       if (verificationCode != null) {
-        // Usamos el código de verificación para confirmar el inicio de sesión
-        confirmationResult.confirm(verificationCode)
-        .then(result => {
-          console.log('Sesion Iniciada');
-          console.log(result)
-        }).catch(error => {
-          console.log(error)
-        })
-      } 
-    })
-    .catch(error => {
-      console.log(error)
-    });
+        const result = await confirmationResult.confirm(verificationCode);
+        correo = await this.getCorreo(tel.slice(3));
+        this.citasService.guardarCookie(String(correo));
+        console.log('Sesion Iniciada', result);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
+  
 
   async futurasCitas(){
     const fechaAct = new Date();
@@ -269,6 +266,22 @@ export class UsuariosService {
           return null;
       }
       return null;
+  }
+  async getCorreo(tel:string):Promise<string>{
+    const q = query(collection(this.firestore, "usuarios"), where("tel", "==", tel));
+    var correo = '';
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const actual:Usuarios = {
+        correo: doc.get('correo'),
+        nombre: doc.get('nombre'),
+        tel: doc.get('tel'),
+        pass: doc.get('pass'),
+      }
+      correo = actual.correo;
+    });
+
+    return correo;
   }
 
   async eliminarCita(nombre: string, auto: string, fechaFin: Date): Promise<void> {

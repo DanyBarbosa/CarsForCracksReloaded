@@ -12,9 +12,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './auto.component.css'
 })
 export class AutoComponent {
+  @Input() indice!:number;
   @Input() auto!:Automovil;
   constructor(public autoServicio:AutoService, public activatedRoute: ActivatedRoute){
     this.activatedRoute.params.subscribe(params => {
+      this.indice=autoServicio.searchAuto(params['id']);
       this.auto=autoServicio.getAuto(params['id']);
     });
   }
