@@ -1,3 +1,4 @@
+import { UsuariosService } from './../usuarios.service';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,8 +9,8 @@ import { AutoService } from '../shared/auto.service';
 import { CitasService } from '../citas.service';
 import { Automovil } from '../automovil';
 import { log } from 'console';
-import { UsuariosService } from '../usuarios.service';
 import Swal from 'sweetalert2';
+import { Usuarios } from '../usuarios';
 
 @Component({
   selector: 'app-reporte',
@@ -25,6 +26,8 @@ export class ReporteComponent {
   citasMarca: Renta []=[];
 
   clientes: Renta[] = [];
+  // Almacenar datos para la grafica
+  datosGrafica: Renta[] = [];
   clientesActivos: Renta[] = [];
   clientesInactivos: Renta[] = [];
 
@@ -44,6 +47,7 @@ export class ReporteComponent {
     this.tomarActuales();
     this.tomarPasadas();
     this.tomarMarca();
+    this.obtenerDatos();
     // console.log(this.mostrarCitas());
     // console.log(this.tomarActuales());
     
@@ -183,5 +187,29 @@ export class ReporteComponent {
     this.mostrarActuales= false;
     this.mostrarPasadas = false;
     this.mostrarMarca = true;
+  }
+
+  // ================================================================
+  // Apartado para obtener los datos de las citas para la grafica
+  // =================================================================
+
+  BMWSerie7:number = 0;
+  PorschePanamera:number = 0;
+  LamborghiniAventador:number = 0;
+  AudiA8:number = 0;
+  FerrariGTC4Lusso:number = 0;
+  TeslaModelS:number = 0;
+
+  obtenerDatos():void{
+    for (let c of this.citasAdmin) {
+      switch(c.auto.nombre){
+        case 'BMW Serie 7': this.BMWSerie7 ++; break;
+        case 'Porsche Panamera': this.PorschePanamera ++; break;
+        case 'Lamborghini Aventador': this.LamborghiniAventador++; break;
+        case 'Audi A8': this.AudiA8++; break;
+        case 'Ferrari GTC4Lusso': this.FerrariGTC4Lusso++; break;
+        case 'Tesla Model S':this.TeslaModelS++; break;
+      }
+    }
   }
 }
