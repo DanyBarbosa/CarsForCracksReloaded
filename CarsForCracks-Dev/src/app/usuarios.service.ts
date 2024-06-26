@@ -46,15 +46,27 @@ export class UsuariosService {
   
   clientes: Renta [] = [];
 
-  registro(formRegistro:FormGroup){
-    setDoc(doc(this.firestore, "usuarios", formRegistro.value.correo),{
-      nombre : formRegistro.value.nombre, 
-      tel : formRegistro.value.tel, 
-      correo : formRegistro.value.correo,
-      pass: formRegistro.value.pass,
-    });
-    return createUserWithEmailAndPassword(this.auth, formRegistro.value.correo, formRegistro.value.pass);
-  }
+  async registro(formRegistro: FormGroup): Promise<void> {
+    try {
+      const { correo, pass, nombre, tel } = formRegistro.value;
+
+      // Create user with email and password
+      await createUserWithEmailAndPassword(this.auth, correo, pass);
+
+      // Store additional user data in Firestore
+      await setDoc(doc(this.firestore, "usuarios", correo), {
+        nombre,
+        tel,
+        correo,
+        pass
+      });
+
+      console.log('Usuario registrado y datos almacenados en Firestore');
+    } catch (error) {
+      console.error('Error registrando usuario:', error);
+      throw error; // Re-throw error to be caught by the caller
+    }
+  }
 
   async registroCita(renta:Renta){
     await addDoc(collection(this.firestore, "citas"),{
@@ -196,8 +208,11 @@ export class UsuariosService {
         };
         this.clientes.push(datosCliente);
     });
-    return this.clientes;
+    return this.clientes; 
   }
+
+
+
   private convertTimestampToDate(timestamp: Timestamp): Date {
     return timestamp.toDate();
   }

@@ -118,3 +118,12 @@ h3 {
 .links-container a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .login-panel {
+    padding: 20px;
+  }
+  .welcome-panel {
+    display: none; /* O esconde el panel de bienvenida en pantallas pequeñas */
+  }
+}

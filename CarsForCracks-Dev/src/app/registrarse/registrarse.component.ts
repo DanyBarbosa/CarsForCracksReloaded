@@ -3,18 +3,21 @@ import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, Valid
 import { CommonModule } from '@angular/common';
 import { UsuariosService } from '../usuarios.service';
 import Swal from 'sweetalert2';
+import { Route, Router } from '@angular/router';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'app-registrarse',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NgxLoadingModule],
   templateUrl: './registrarse.component.html',
   styleUrls: ['./registrarse.component.css']
 })
 export class RegistrarseComponent implements OnInit {
   formRegistro: FormGroup;
+  loading = false;
 
-  constructor(private usuarioService: UsuariosService) {
+  constructor(private usuarioService: UsuariosService, private route:Router) {
     this.formRegistro = new FormGroup({
       nombre: new FormControl('', Validators.required),
       tel: new FormControl('', [Validators.required, this.telefonoValidator, Validators.minLength(10)]),
@@ -42,15 +45,35 @@ export class RegistrarseComponent implements OnInit {
     return null;
   }
 
-  onSubmit() {
+  async onSubmit() {
+    console.log(this.formRegistro.value.correo);
     if (this.formRegistro.valid) {
-      this.usuarioService.registro(this.formRegistro);
-      this.formRegistro.reset();
-      Swal.fire({
-        title: "Registro exitoso",
-        text: "Procede a hacer login",
-        icon: "success"
-      });
+      this.loading = true;
+      try {
+        console.log(this.formRegistro.value.correo);
+        console.log(this.formRegistro.value);
+        await this.usuarioService.registro(this.formRegistro); // Esperar a que la promesa se resuelva
+        setTimeout(() => {
+          this.loading = false;
+          Swal.fire({
+            title: "Registro exitoso",
+            text: "Usuario registrado correctamente",
+            icon: "success"
+          }).then(() => {
+            this.route.navigate(['/home']); // Redirigir a la página de inicio
+          });
+          this.formRegistro.reset();
+        }, 3000); // simulando una operación de carga
+      } catch (error) {
+        setTimeout(() => {
+          this.loading = false;
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Algo salió mal, intenta de nuevo"
+          });
+        }, 3000); // simulando una operación de carga
+      }
     }
   }
 
