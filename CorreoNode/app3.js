@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/random-number', (req, res) => {
-    const randomNumber = Math.floor(Math.random() * 12) + 1;
+    const randomNumber = Math.floor(Math.random() * 12);
     res.json({ number: randomNumber });
 });
 
